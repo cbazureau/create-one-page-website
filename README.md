@@ -1,5 +1,3 @@
-# WARNING
-
 🚧 🚧 BUILD IN PROGRESS 🚧 🚧
 
 # Create One-page website
