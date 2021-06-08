@@ -1,0 +1,26 @@
+{
+  "name": "cow-scripts",
+  "version": "0.0.1",
+  "description": "Configuration and scripts for Create One-page Website",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbazureau/create-one-page-website.git",
+    "directory": "packages/cow-scripts"
+  },
+  "keywords": [
+    "create-one-page-website",
+    "one-page",
+    "scripts"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cbazureau/create-one-page-website/issues"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "homepage": "https://github.com/cbazureau/create-one-page-website#readme"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "format": "prettier --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'"
+  },
+  "lint-staged": {
+    "*.{js,json,yml,yaml,css,scss,ts,tsx,md}": [
+      "prettier --write"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "create-one-page-website",
+  "version": "0.0.1",
+  "description": "Create optimized One-page Websites easily",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "create-one-page-website": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbazureau/create-one-page-website.git",
+    "directory": "packages/create-one-page-website"
+  },
+  "keywords": [
+    "one-page"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cbazureau/create-one-page-website/issues"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "homepage": "https://github.com/cbazureau/create-one-page-website#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "commander": "^7.2.0"
+  }
+}
