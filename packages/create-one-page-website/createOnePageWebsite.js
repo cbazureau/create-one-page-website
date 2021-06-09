@@ -208,6 +208,34 @@ function isSafeToCreateProjectIn(root, name) {
 }
 
 /**
+ * executeNodeScript
+ * Iso https://github.com/facebook/create-react-app
+ * @param {*} param0
+ * @param {*} data
+ * @param {*} source
+ * @returns
+ */
+const executeNodeScript = ({ cwd, args }, data, source) => {
+  return new Promise((resolve, reject) => {
+    const child = spawn(
+      process.execPath,
+      [...args, '-e', source, '--', JSON.stringify(data)],
+      { cwd, stdio: 'inherit' }
+    );
+
+    child.on('close', code => {
+      if (code !== 0) {
+        reject({
+          command: `node ${args.join(' ')}`,
+        });
+        return;
+      }
+      resolve();
+    });
+  });
+};
+
+/**
  * createOnePageWebsite
  * Inspired by https://github.com/facebook/create-react-app
  * @param {*} name
@@ -266,7 +294,23 @@ const createOnePageWebsite = (name, version, template) =>
         });
         return;
       }
-      resolve();
+      // TODO : do not hard code this because it needs to work with @scope/cow-scripts
+      const packageName = 'cow-scripts';
+      // TODO : do not hard code this because it needs to work with @scope/cow-template
+      const templateName = 'cow-template';
+      executeNodeScript(
+        {
+          cwd: process.cwd(),
+          args: [],
+        },
+        [root, appName, originalDirectory, templateName],
+        `
+      var init = require('${packageName}/scripts/init.js');
+      init.apply(null, JSON.parse(process.argv[1]));
+    `
+      )
+        .then(() => resolve())
+        .catch(e => reject(e));
     });
   });
 
