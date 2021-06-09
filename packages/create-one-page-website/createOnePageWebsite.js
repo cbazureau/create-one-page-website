@@ -69,6 +69,23 @@ const getInstallPackage = (version, originalDirectory) => {
 };
 
 /**
+ * getPackageName
+ * @param {*} installPackage
+ * @returns
+ */
+const getPackageName = installPackage => {
+  if (installPackage.match(/^file:/)) {
+    const installPackagePath = installPackage.match(/^file:(.*)?$/)[1];
+    const { name, version } = require(path.join(
+      installPackagePath,
+      'package.json'
+    ));
+    return { name };
+  }
+  return { name: installPackage };
+};
+
+/**
  * getTemplateInstallPackage
  * Inspired by https://github.com/facebook/create-react-app
  * @param {*} template
@@ -294,10 +311,8 @@ const createOnePageWebsite = (name, version, template) =>
         });
         return;
       }
-      // TODO : do not hard code this because it needs to work with @scope/cow-scripts
-      const packageName = 'cow-scripts';
-      // TODO : do not hard code this because it needs to work with @scope/cow-template
-      const templateName = 'cow-template';
+      const packageName = getPackageName(packageToInstall).name;
+      const templateName = getPackageName(templateToInstall).name;
       executeNodeScript(
         {
           cwd: process.cwd(),
