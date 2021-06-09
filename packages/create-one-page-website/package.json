@@ -4,7 +4,7 @@
   "description": "Create optimized One-page Websites easily",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "demo": "rm -rf aaa/;node index.js aaa"
+    "demo": "rm -rf aaa/;node index.js aaa --template file:../cow-template --scripts-version file:../cow-scripts"
   },
   "bin": {
     "create-one-page-website": "./index.js"
