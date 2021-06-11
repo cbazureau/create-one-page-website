@@ -1,12 +1,10 @@
-# cow-template
+# create-one-page-website
 
 🚧 🚧 BUILD IN PROGRESS 🚧 🚧
 
-This is the official base template for [Create One-page Website](https://github.com/cbazureau/create-one-page-website).
+This package includes the global command for [Create One-page Website](https://github.com/cbazureau/create-one-page-website).
 
-If you don't specify a template, this template will be used by default.
-
-For more information, please refer to:
+Please refer to its documentation:
 
 - [Getting Started](https://github.com/cbazureau/create-one-page-website) – How to create a new website.
 - [User Guide](https://github.com/cbazureau/create-one-page-website) – How to develop websites bootstrapped with Create One-page Website.
