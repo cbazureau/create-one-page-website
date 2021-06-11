@@ -64,7 +64,6 @@ const getInstallPackage = (version, originalDirectory) => {
     }
   }
 
-  console.log('packageToInstall', version, packageToInstall);
   return packageToInstall;
 };
 

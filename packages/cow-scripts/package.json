@@ -15,6 +15,9 @@
     "one-page",
     "scripts"
   ],
+  "bin": {
+    "cow-scripts": "./bin/cow-scripts.js"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cbazureau/create-one-page-website/issues"
@@ -25,6 +28,7 @@
   "homepage": "https://github.com/cbazureau/create-one-page-website#readme",
   "dependencies": {
     "chalk": "^4.1.1",
+    "cross-spawn": "^7.0.3",
     "fs-extra": "^10.0.0"
   }
 }
