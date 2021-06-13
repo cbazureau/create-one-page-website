@@ -29,6 +29,8 @@
   "dependencies": {
     "chalk": "^4.1.1",
     "cross-spawn": "^7.0.3",
-    "fs-extra": "^10.0.0"
+    "fs-extra": "^10.0.0",
+    "md5": "^2.3.0",
+    "parcel-bundler": "^1.12.5"
   }
 }

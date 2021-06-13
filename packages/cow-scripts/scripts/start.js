@@ -1,2 +1,2 @@
-console.log('cow-scripts start')
+console.log('cow-scripts start');
 process.exit(0);
