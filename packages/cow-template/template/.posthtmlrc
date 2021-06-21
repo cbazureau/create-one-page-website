@@ -1,5 +1,5 @@
 {
   "plugins": {
-    "cow-scripts/posthtml-web-component": { hostURI: './' }
+    "cow-scripts/posthtml-web-component": { }
   }
 }

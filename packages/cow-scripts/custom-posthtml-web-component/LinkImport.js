@@ -1,39 +1,33 @@
-var path = require('path');
-var posthtml = require('posthtml');
-var fs = require('fs');
-var url = require('url');
+const path = require('path');
+const posthtml = require('posthtml');
+const fs = require('fs');
 
-function LinkImport(customElementTagName, uri, originURI) {
+function LinkImport(customElementTagName, cmpPath) {
   this.customElementTagName = customElementTagName;
-  this.uri = uri;
-  this.originURI = originURI;
+  this.cmpPath = cmpPath;
 }
 
 LinkImport.prototype.load = function () {
   return new Promise(
     function (resolve, reject) {
-      if (/^http:\/\//.test(this.uri)) {
-        reject(new Error('Not supported'));
-      } else {
-        fs.readFile(
-          this.uri,
-          'utf-8',
-          function (error, data) {
-            if (error) {
-              reject(error);
-            } else {
-              this.source = data;
-              resolve('loaded');
-            }
-          }.bind(this)
-        );
-      }
+      fs.readFile(
+        this.cmpPath,
+        'utf-8',
+        function (error, data) {
+          if (error) {
+            reject(error);
+          } else {
+            this.source = data;
+            resolve('loaded');
+          }
+        }.bind(this)
+      );
     }.bind(this)
   );
 };
 
 LinkImport.prototype.prepare = function () {
-  var parts = (this.parts = {
+  const parts = (this.parts = {
     styles: [],
     scripts: [],
     html: null,
@@ -74,21 +68,10 @@ LinkImport.prototype.prepare = function () {
     )
     .process(this.source, { sync: true });
 };
-LinkImport.parse = function (node, options) {
-  if (!(options && options.hostURI)) {
-    throw new Error('The base uri is need in options');
-  }
-  var customElementTagName, uri, originURI;
-  originURI = node.attrs.href;
-  var pathname;
-  if (/^(http|https):\/\//.test(originURI)) {
-    uri = originURI;
-    pathname = url.parse(uri).pathname;
-  } else {
-    uri = pathname = path.resolve(path.dirname(options.hostURI), originURI);
-  }
-  customElementTagName = path.parse(pathname).name;
-  return new LinkImport(customElementTagName, uri, originURI);
+LinkImport.parse = function (componentName) {
+  const cmpPath = path.resolve(__dirname, `components/${componentName}.html`);
+  const customElementTagName = componentName;
+  return new LinkImport(customElementTagName, cmpPath);
 };
 
 LinkImport.prototype.loaded = function () {

@@ -4,31 +4,22 @@
  * - the return undefined doesn't work
  * - when zero component are present js/css were still loaded
  */
-var LinkImport = require('./LinkImport');
+const LinkImport = require('./LinkImport');
+const TAGS = ['cow-clock'];
 
 module.exports = function (options) {
   return function webComponent(tree, cb) {
     var LinkImports = [];
-    tree.walk(function (node) {
-      if (
-        node.tag === 'link' &&
-        node.attrs.rel === 'import' &&
-        node.attrs.href
-      ) {
-        const linkImport = LinkImport.parse(node, options);
-        const tagName = linkImport.getCustomElementTagName();
-        let count = 0;
-        tree.match({ tag: tagName }, function (node) {
-          count++;
-          return node;
-        });
-        if (count > 0) LinkImports.push(linkImport);
-        // remove LinkImport from origin html
-        node.tag = false;
-        node.content = [];
+    TAGS.forEach(tag => {
+      let count = 0;
+      tree.match({ tag }, function (node) {
+        count++;
         return node;
+      });
+      if (count > 0) {
+        const linkImport = LinkImport.parse(tag);
+        LinkImports.push(linkImport);
       }
-      return node;
     });
 
     Promise.all(
