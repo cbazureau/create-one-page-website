@@ -1,10 +1,10 @@
 /**
- * Custom posthtml-web-component because
- * - https://github.com/posthtml/posthtml-web-component/blob/master/src/LinkImport.js is not uptodate
- * the return undefined doesn't work
+ * Custom posthtml-web-component because :
+ * - https://github.com/posthtml/posthtml-web-component/blob/master/src/LinkImport.js is not up to date (to propose an MR)
+ * - the return undefined doesn't work
+ * - when zero component are present js/css were still loaded
  */
 var LinkImport = require('./LinkImport');
-var debug = require('debug')('posthtml-web-component:index');
 
 module.exports = function (options) {
   return function webComponent(tree, cb) {
@@ -15,14 +15,20 @@ module.exports = function (options) {
         node.attrs.rel === 'import' &&
         node.attrs.href
       ) {
-        LinkImports.push(LinkImport.parse(node, options));
+        const linkImport = LinkImport.parse(node, options);
+        const tagName = linkImport.getCustomElementTagName();
+        let count = 0;
+        tree.match({ tag: tagName }, function (node) {
+          count++;
+          return node;
+        });
+        if (count > 0) LinkImports.push(linkImport);
         // remove LinkImport from origin html
-        // return undefined;
         return {};
       }
       return node;
     });
-    debug('parse all LinkImports', LinkImports);
+
     Promise.all(
       LinkImports.map(function (linkImport) {
         return linkImport.load();
@@ -30,11 +36,11 @@ module.exports = function (options) {
     ).then(onAllLoaded, onAllLoaded);
 
     function onAllLoaded() {
-      debug('onAllLoaded');
       var resources = {
         styles: [],
         scripts: [],
       };
+
       LinkImports.filter(function (linkImport) {
         return linkImport.loaded();
       }).reduce(function (resources, currentLinkImport) {
@@ -55,7 +61,7 @@ module.exports = function (options) {
         );
         return resources;
       }, resources);
-      debug('prepare all resources', resources, 'done');
+
       tree.walk(function (node) {
         if (node && node.tag === 'head') {
           node.content.push.apply(node.content, resources.styles);
