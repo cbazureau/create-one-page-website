@@ -24,7 +24,9 @@ module.exports = function (options) {
         });
         if (count > 0) LinkImports.push(linkImport);
         // remove LinkImport from origin html
-        return {};
+        node.tag = false;
+        node.content = [];
+        return node;
       }
       return node;
     });
