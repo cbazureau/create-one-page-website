@@ -49,7 +49,19 @@ module.exports = function (options) {
         tree.match(
           { tag: currentLinkImport.getCustomElementTagName() },
           function (node) {
-            return currentLinkImport.getHTML();
+            let props = {};
+            if (node.attrs) {
+              props = Object.keys(node.attrs).reduce((acc, item) => {
+                if (item.startsWith('data-')) {
+                  return {
+                    ...acc,
+                    [item.replace('data-', '')]: node.attrs[item],
+                  };
+                }
+                return acc;
+              }, {});
+            }
+            return currentLinkImport.getHTML(props);
           }
         );
         return resources;
