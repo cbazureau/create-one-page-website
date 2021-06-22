@@ -2,15 +2,7 @@ const path = require('path');
 const posthtml = require('posthtml');
 const render = require('posthtml-render');
 const fs = require('fs');
-const template = require('lodash/template');
-
-/**
- * @returns a formatted string from the specied object and pattern
- * @param {*} object
- * @param {*} pattern
- */
-const formatFromPattern = (pattern, object) =>
-  template(pattern, { interpolate: /{([\s\S]+?)}/g })(object);
+const Mustache = require('mustache');
 
 function LinkImport(customElementTagName, cmpPath) {
   this.customElementTagName = customElementTagName;
@@ -97,7 +89,7 @@ LinkImport.prototype.getHTML = function (props) {
     .use(function (tree) {
       html = tree;
     })
-    .process(formatFromPattern(this.parts.html, props), { sync: true });
+    .process(Mustache.render(this.parts.html, props), { sync: true });
   return html;
 };
 
