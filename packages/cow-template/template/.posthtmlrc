@@ -1,5 +1,0 @@
-{
-  "plugins": {
-    "cow-scripts/posthtml-cow-component": { }
-  }
-}

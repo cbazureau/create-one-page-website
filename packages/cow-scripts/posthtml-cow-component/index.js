@@ -10,7 +10,7 @@ module.exports = options => {
       tree.match({ tag }, function (node) {
         const { processor } = require(`./components/${tag}/processor`);
         count++;
-        return processor(node, {});
+        return processor(node, options);
       });
       if (count > 0) {
         importedTags.push(tag);
