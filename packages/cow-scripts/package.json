@@ -30,9 +30,7 @@
     "chalk": "^4.1.1",
     "cross-spawn": "^7.0.3",
     "fs-extra": "^10.0.0",
-    "mustache": "^4.2.0",
     "parcel-bundler": "^1.12.5",
-    "posthtml": "^0.11.6",
-    "posthtml-render": "^1.4.0"
+    "posthtml": "^0.11.6"
   }
 }

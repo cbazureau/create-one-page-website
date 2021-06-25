@@ -20,7 +20,7 @@ const defaultOptions = {
   outDir: resolveApp(buildFolder), // The out directory to put the build files in, defaults to dist
   outFile: indexFile, // The name of the outputFile
   publicUrl: '/', // The url to serve on, defaults to '/'
-  cache: true, // Enabled or disables caching, defaults to true
+  cache: false, // Enabled or disables caching, defaults to true
   cacheDir: resolveApp(cacheFolder), // The directory cache gets put in, defaults to .cache
   contentHash: false, // Disable content hash from being included on the filename
   global: 'moduleName', // Expose modules as UMD under this name, disabled by default
