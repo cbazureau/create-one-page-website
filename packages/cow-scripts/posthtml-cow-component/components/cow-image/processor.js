@@ -36,7 +36,7 @@ const _buildSrcSet = (src, format) => {
 };
 
 module.exports = {
-  processor: async ({ attrs = {}, content = {} }, { workingDir }) => {
+  processor: ({ attrs = {}, content = {} }, { workingDir }) => {
     const { src, alt, sizes } = attrs;
 
     (async () => {
