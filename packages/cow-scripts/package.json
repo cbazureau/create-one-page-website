@@ -31,6 +31,7 @@
     "cross-spawn": "^7.0.3",
     "fs-extra": "^10.0.0",
     "parcel-bundler": "^1.12.5",
-    "posthtml": "^0.11.6"
+    "posthtml": "^0.11.6",
+    "sharp": "^0.28.3"
   }
 }
