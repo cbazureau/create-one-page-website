@@ -1,4 +1,3 @@
-// https://blog.bitsrc.io/lazy-loading-images-using-the-intersection-observer-api-5a913ee226d
 document.addEventListener('DOMContentLoaded', function () {
   const imageObserver = new IntersectionObserver((entries, imgObserver) => {
     entries.forEach(entry => {

@@ -3,3 +3,13 @@
 body {
   background-color: aqua;
 }
+
+.Paragraph {
+  color: gray;
+  transition: color 1s ease-in;
+}
+
+.Paragraph.is-visible {
+  color: black;
+}
+
