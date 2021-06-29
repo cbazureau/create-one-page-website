@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs-extra');
 const RESOLUTIONS = [375, 640, 750, 1024, 1280, 2048, 2560];
-const THUMB = 10;
+const THUMB = 24;
 const IMG = '/img/';
 const TMP = '/.cow-temp/';
 
@@ -13,7 +13,9 @@ const convertImg = async (img, res, format) => {
     if (fs.existsSync(target)) {
       return Promise.resolve();
     } else if (format === 'jpg') {
-      const resp = await sharp(img).resize(res).toFile(target);
+      await sharp(img).resize(res).toFile(target);
+    } else if (format === 'png') {
+      await sharp(img).resize(res).png().toFile(target);
     } else {
       await sharp(img).resize(res).webp().toFile(target);
     }
@@ -37,7 +39,7 @@ const _buildSrcSet = (src, format) => {
 
 module.exports = {
   processor: ({ attrs = {}, content = {} }, { workingDir }) => {
-    const { src, alt, sizes } = attrs;
+    const { src, alt, sizes, className } = attrs;
 
     (async () => {
       fs.ensureDir(path.join(workingDir, TMP));
@@ -47,13 +49,19 @@ module.exports = {
       ).forEach(async ({ format, res }) => {
         await convertImg(path.join(workingDir, './src', src), res, format);
       });
-      await convertImg(path.join(workingDir, './src', src), THUMB, 'jpg');
+      await convertImg(path.join(workingDir, './src', src), THUMB, 'png');
     })();
+
+    const pictureClassName = ['CowImage', className].filter(c => !!c).join(' ');
+    const imgClassName = ['CowImage', className]
+      .filter(c => !!c)
+      .map(c => `${c}__img`)
+      .join(' ');
 
     return {
       tag: 'picture',
       attrs: {
-        class: 'CowImage',
+        class: pictureClassName,
       },
       content: [
         {
@@ -75,8 +83,8 @@ module.exports = {
         {
           tag: 'img',
           attrs: {
-            class: 'CowImage__img',
-            src: src.replace(IMG, TMP).replace('.jpg', `.${THUMB}.jpg`),
+            class: imgClassName,
+            src: src.replace(IMG, TMP).replace('.jpg', `.${THUMB}.png`),
             'data-src': src
               .replace(IMG, TMP)
               .replace('.jpg', `.${RESOLUTIONS[0]}.jpg`),
@@ -89,7 +97,7 @@ module.exports = {
             {
               tag: 'img',
               attrs: {
-                class: 'CowImage__img',
+                class: imgClassName,
                 src: src
                   .replace(IMG, TMP)
                   .replace('.jpg', `.${RESOLUTIONS[0]}.jpg`),

@@ -1,3 +1,4 @@
 .CowImage {
-  background-color: red;
+  display: block;
+  width: 100%;
 }
