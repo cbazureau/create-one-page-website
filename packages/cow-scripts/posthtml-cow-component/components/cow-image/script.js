@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const lazyImage = entry.target;
-        console.log('lazy loading ', lazyImage);
         lazyImage.childNodes.forEach(c => {
           if (c.dataset) {
             if (c.dataset.src) c.src = c.dataset.src;
