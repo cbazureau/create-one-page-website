@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const TAGS = ['cow-image'];
+const TAGS = ['cow-image', 'cow-visible'];
 
 module.exports = options => {
   return (tree, cb) => {

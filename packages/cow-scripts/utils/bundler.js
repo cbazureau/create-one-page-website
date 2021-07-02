@@ -35,7 +35,12 @@ const defaultOptions = {
 };
 
 const getBundler = options => {
-  return new Bundler(entryFiles, { ...defaultOptions, ...options });
+  const bundler = new Bundler(entryFiles, { ...defaultOptions, ...options });
+  bundler.addAssetType(
+    'html',
+    path.join(__dirname, '../parcel-plugin-lazy/HTMLAssetWithLazySrc.js')
+  );
+  return bundler;
 };
 
 module.exports = getBundler;
