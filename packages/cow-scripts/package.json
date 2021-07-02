@@ -1,6 +1,6 @@
 {
   "name": "cow-scripts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Configuration and scripts for Create One-page Website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
