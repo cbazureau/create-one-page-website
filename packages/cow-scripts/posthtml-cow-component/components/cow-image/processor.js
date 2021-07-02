@@ -1,23 +1,37 @@
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs-extra');
-const RESOLUTIONS = [375, 640, 750, 1024, 1280, 2048, 2560];
-const THUMB = 24;
+const RESOLUTIONS = [
+  { width: 375, quality: 80 },
+  { width: 640, quality: 80 },
+  { width: 750, quality: 80 },
+  { width: 1024, quality: 80 },
+  { width: 1280, quality: 80 },
+  { width: 2048, quality: 80 },
+  { width: 2560, quality: 80 },
+];
+const THUMB = { width: 24, quality: 60 };
 const IMG = '/img/';
 const TMP = '/.cow-temp/';
+const BLANK_IMG =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg==';
 
-const convertImg = async (img, res, format) => {
+const convertImg = async (img, res = {}, format) => {
+  const { width, quality } = res;
   try {
     const metadata = await sharp(img).metadata();
-    const target = img.replace(IMG, TMP).replace('.jpg', `.${res}.${format}`);
+    const target = img.replace(IMG, TMP).replace('.jpg', `.${width}.${format}`);
     if (fs.existsSync(target)) {
       return Promise.resolve();
     } else if (format === 'jpg') {
-      await sharp(img).resize(res).toFile(target);
+      await sharp(img).resize(width).jpeg({ quality }).toFile(target);
     } else if (format === 'png') {
-      await sharp(img).resize(res).png().toFile(target);
+      await sharp(img)
+        .resize(width)
+        .png({ compressionLevel: Math.round(quality / 10) })
+        .toFile(target);
     } else {
-      await sharp(img).resize(res).webp().toFile(target);
+      await sharp(img).resize(width).webp({ quality }).toFile(target);
     }
   } catch (e) {
     console.log(e);
@@ -32,14 +46,49 @@ const convertImg = async (img, res, format) => {
  */
 const _buildSrcSet = (src, format) => {
   return RESOLUTIONS.map(
-    res =>
-      `${src.replace(IMG, TMP).replace('.jpg', `.${res}.${format}`)} ${res}w`
+    ({ width }) =>
+      `${src
+        .replace(IMG, TMP)
+        .replace('.jpg', `.${width}.${format}`)} ${width}w`
   ).join(', ');
 };
 
 module.exports = {
   processor: ({ attrs = {}, content = [] }, { workingDir }) => {
     const { src, alt, sizes, className } = attrs;
+
+    if (!src.endsWith('.jpg') && !src.endsWith('.jpeg')) {
+      return {
+        tag: 'picture',
+        attrs: {
+          class: pictureClassName,
+        },
+        content: [
+          {
+            tag: 'img',
+            attrs: {
+              class: imgClassName,
+              src: BLANK_IMG,
+              'data-src': src,
+              alt,
+            },
+          },
+          {
+            tag: 'noscript',
+            content: [
+              {
+                tag: 'img',
+                attrs: {
+                  class: imgClassName,
+                  src: src,
+                  alt,
+                },
+              },
+            ],
+          },
+        ],
+      };
+    }
 
     (async () => {
       fs.ensureDir(path.join(workingDir, TMP));
@@ -84,10 +133,10 @@ module.exports = {
           tag: 'img',
           attrs: {
             class: imgClassName,
-            src: src.replace(IMG, TMP).replace('.jpg', `.${THUMB}.png`),
+            src: src.replace(IMG, TMP).replace('.jpg', `.${THUMB.width}.png`),
             'data-src': src
               .replace(IMG, TMP)
-              .replace('.jpg', `.${RESOLUTIONS[0]}.jpg`),
+              .replace('.jpg', `.${RESOLUTIONS[0].width}.jpg`),
             alt,
           },
         },
@@ -100,7 +149,7 @@ module.exports = {
                 class: imgClassName,
                 src: src
                   .replace(IMG, TMP)
-                  .replace('.jpg', `.${RESOLUTIONS[0]}.jpg`),
+                  .replace('.jpg', `.${RESOLUTIONS[0].width}.jpg`),
                 alt,
               },
             },

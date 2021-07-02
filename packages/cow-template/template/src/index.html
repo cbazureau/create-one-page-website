@@ -11,7 +11,7 @@
 
 <body>
   <header>
-    <cow-image src="../img/example.jpg" alt="image 1" className="HeaderImg"></cow-image>
+    <cow-inline-svg src="../img/cow.svg" className="HeaderImg"></cow-inline-svg>
   </header>
   <nav>
     <ul>
@@ -35,6 +35,7 @@
     </cow-visible>
     <cow-visible className="Paragraph">
       <h2 id="optimized">What do you mean by optimized ?</h2>
+      <cow-image src="../img/example.jpg" alt="image 1" className="OptimizedImg"></cow-image>
       <p>
         In lobortis tincidunt ante, nec malesuada quam pharetra sed. Aliquam efficitur dolor in quam vulputate, in
         faucibus tellus dictum. Curabitur urna nunc, elementum non imperdiet ac, ornare sed justo. Proin non pretium
@@ -61,7 +62,11 @@
       </p>
     </cow-visible>
   </section>
-  <footer>Copyright</footer>
+  <footer>
+    <p>Credits</p>
+    <p>Cow icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a
+        href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+  </footer>
   <script src="js/main.js"></script>
 </body>
 
