@@ -1,7 +1,83 @@
 @import url('./minimal-normalize.css');
 
+:root {
+  --cow-dark-brown: #934d36;
+  --cow-brown: #aa593d;
+  --cow-medium-brown: #f1b986;
+  --cow-light-brown: #f1d0a5;
+  --cow-light-white: #f6f1f1;
+  --cow-light-gray: #dfdfdf;
+  --cow-medium-gray: #454045;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
 body {
   background-color: white;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px 12px;
+}
+
+header h1 {
+  padding: 24px 24px;
+  font-size: 4rem;
+}
+
+nav {
+  padding: 12px;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  padding: 12px;
+  font-size: 2rem;
+}
+
+nav a {
+  background-color: var(--cow-light-gray);
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+.HeaderImg {
+  max-width: 300px;
+}
+.HeaderImg .class1 {
+  fill: var(--cow-dark-brown);
+}
+.HeaderImg .class2 {
+  fill: var(--cow-light-brown);
+}
+.HeaderImg .class3 {
+  fill: var(--cow-light-white);
+}
+.HeaderImg .class4 {
+  fill: var(--cow-light-gray);
+}
+.HeaderImg .class5 {
+  fill: var(--cow-medium-brown);
+}
+.HeaderImg .class6 {
+  fill: var(--cow-brown);
+}
+.HeaderImg .class7 {
+  fill: var(--cow-medium-gray);
 }
 
 .Paragraph {
@@ -15,21 +91,10 @@ body {
 
 .Paragraph h2 {
   font-size: 3rem;
-  padding: 15px 30px;
+  padding: 12px 36px;
 }
 
 .Paragraph p {
   font-size: 2rem;
-  padding: 15px 30px;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-}
-
-.HeaderImg {
-  max-width: 300px;
+  padding: 12px 36px;
 }

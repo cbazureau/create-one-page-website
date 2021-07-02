@@ -107,3 +107,16 @@ See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d4
 :-moz-ui-invalid {
   box-shadow: none;
 }
+
+/**
+Reset h* margin/padding
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
