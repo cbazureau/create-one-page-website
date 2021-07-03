@@ -1,6 +1,7 @@
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs-extra');
+const { imgFolder: IMG, tmpFolder: TMP } = require('../../../utils/constants');
 
 const RESOLUTIONS = [
   { width: 375, quality: 80 },
@@ -12,10 +13,15 @@ const RESOLUTIONS = [
   { width: 2560, quality: 80 },
 ];
 const THUMB = { width: 24, quality: 60 };
-const IMG = '/img/';
-const TMP = '/.cow-temp/';
 const BLANK_IMG =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg==';
+
+/**
+ * getJpgExt
+ * @param {*} src
+ * @returns
+ */
+const getJpgExt = src => (src.endsWith('.jpeg') ? '.jpeg' : '.jpg');
 
 /**
  * convertImg
@@ -27,7 +33,9 @@ const BLANK_IMG =
 const convertImg = async (img, res = {}, format) => {
   const { width, quality } = res;
   try {
-    const target = img.replace(IMG, TMP).replace('.jpg', `.${width}.${format}`);
+    const target = img
+      .replace(IMG, TMP)
+      .replace(getJpgExt(img), `.${width}.${format}`);
     if (fs.existsSync(target)) {
       return Promise.resolve();
     }
@@ -59,7 +67,7 @@ const buildSrcSet = (src, format) =>
     ({ width }) =>
       `${src
         .replace(IMG, TMP)
-        .replace('.jpg', `.${width}.${format}`)} ${width}w`
+        .replace(getJpgExt(src), `.${width}.${format}`)} ${width}w`
   ).join(', ');
 
 module.exports = {
@@ -116,6 +124,8 @@ module.exports = {
       await convertImg(path.join(workingDir, './src', src), THUMB, 'png');
     })();
 
+    const ext = getJpgExt(src);
+
     return {
       tag: 'picture',
       attrs: {
@@ -142,10 +152,10 @@ module.exports = {
           tag: 'img',
           attrs: {
             class: imgClassName,
-            src: src.replace(IMG, TMP).replace('.jpg', `.${THUMB.width}.png`),
+            src: src.replace(IMG, TMP).replace(ext, `.${THUMB.width}.png`),
             'data-src': src
               .replace(IMG, TMP)
-              .replace('.jpg', `.${RESOLUTIONS[0].width}.jpg`),
+              .replace(ext, `.${RESOLUTIONS[0].width}.jpg`),
             alt,
           },
         },
@@ -158,7 +168,7 @@ module.exports = {
                 class: imgClassName,
                 src: src
                   .replace(IMG, TMP)
-                  .replace('.jpg', `.${RESOLUTIONS[0].width}.jpg`),
+                  .replace(ext, `.${RESOLUTIONS[0].width}.jpg`),
                 alt,
               },
             },
