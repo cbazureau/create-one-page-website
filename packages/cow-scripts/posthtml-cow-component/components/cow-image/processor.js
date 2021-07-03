@@ -1,6 +1,7 @@
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs-extra');
+
 const RESOLUTIONS = [
   { width: 375, quality: 80 },
   { width: 640, quality: 80 },
@@ -16,25 +17,34 @@ const TMP = '/.cow-temp/';
 const BLANK_IMG =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg==';
 
+/**
+ * convertImg
+ * @param {*} img
+ * @param {*} res
+ * @param {*} format
+ * @returns
+ */
 const convertImg = async (img, res = {}, format) => {
   const { width, quality } = res;
   try {
-    const metadata = await sharp(img).metadata();
     const target = img.replace(IMG, TMP).replace('.jpg', `.${width}.${format}`);
     if (fs.existsSync(target)) {
       return Promise.resolve();
-    } else if (format === 'jpg') {
-      await sharp(img).resize(width).jpeg({ quality }).toFile(target);
-    } else if (format === 'png') {
-      await sharp(img)
+    }
+    if (format === 'jpg') {
+      return sharp(img).resize(width).jpeg({ quality }).toFile(target);
+    }
+    if (format === 'png') {
+      return sharp(img)
         .resize(width)
         .png({ compressionLevel: Math.round(quality / 10) })
         .toFile(target);
-    } else {
-      await sharp(img).resize(width).webp({ quality }).toFile(target);
     }
+    return sharp(img).resize(width).webp({ quality }).toFile(target);
   } catch (e) {
-    console.log(e);
+    // eslint-disable-next-line no-console
+    console.error(e);
+    return Promise.reject();
   }
 };
 
@@ -44,18 +54,23 @@ const convertImg = async (img, res = {}, format) => {
  * @param {*} format
  * @returns
  */
-const _buildSrcSet = (src, format) => {
-  return RESOLUTIONS.map(
+const buildSrcSet = (src, format) =>
+  RESOLUTIONS.map(
     ({ width }) =>
       `${src
         .replace(IMG, TMP)
         .replace('.jpg', `.${width}.${format}`)} ${width}w`
   ).join(', ');
-};
 
 module.exports = {
-  processor: ({ attrs = {}, content = [] }, { workingDir }) => {
+  name: 'cow-image',
+  processor: ({ attrs = {} }, { workingDir }) => {
     const { src, alt, sizes, className } = attrs;
+    const pictureClassName = ['CowImage', className].filter(c => !!c).join(' ');
+    const imgClassName = ['CowImage', className]
+      .filter(c => !!c)
+      .map(c => `${c}__img`)
+      .join(' ');
 
     if (!src.endsWith('.jpg') && !src.endsWith('.jpeg')) {
       return {
@@ -80,7 +95,7 @@ module.exports = {
                 tag: 'img',
                 attrs: {
                   class: imgClassName,
-                  src: src,
+                  src,
                   alt,
                 },
               },
@@ -101,12 +116,6 @@ module.exports = {
       await convertImg(path.join(workingDir, './src', src), THUMB, 'png');
     })();
 
-    const pictureClassName = ['CowImage', className].filter(c => !!c).join(' ');
-    const imgClassName = ['CowImage', className]
-      .filter(c => !!c)
-      .map(c => `${c}__img`)
-      .join(' ');
-
     return {
       tag: 'picture',
       attrs: {
@@ -116,7 +125,7 @@ module.exports = {
         {
           tag: 'source',
           attrs: {
-            'data-srcset': _buildSrcSet(src, 'webp'),
+            'data-srcset': buildSrcSet(src, 'webp'),
             type: 'image/webp',
             sizes: sizes || '100vw',
           },
@@ -124,7 +133,7 @@ module.exports = {
         {
           tag: 'source',
           attrs: {
-            'data-srcset': _buildSrcSet(src, 'jpg'),
+            'data-srcset': buildSrcSet(src, 'jpg'),
             type: 'image/jpeg',
             sizes: sizes || '100vw',
           },

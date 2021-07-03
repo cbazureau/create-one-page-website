@@ -35,19 +35,16 @@
 //   /!\ DO NOT MODIFY THIS FILE /!\
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-'use strict';
-
-var currentNodeVersion = process.versions.node;
-var semver = currentNodeVersion.split('.');
-var major = semver[0];
+const currentNodeVersion = process.versions.node;
+const semver = currentNodeVersion.split('.');
+const major = semver[0];
 
 if (major < 14) {
+  // eslint-disable-next-line no-console
   console.error(
-    'You are running Node ' +
-      currentNodeVersion +
-      '.\n' +
-      'Create One-page Website requires Node 14 or higher. \n' +
-      'Please update your version of Node.'
+    `You are running Node ${currentNodeVersion}.\n` +
+      `Create One-page Website requires Node 14 or higher. \n` +
+      `Please update your version of Node.`
   );
   process.exit(1);
 }

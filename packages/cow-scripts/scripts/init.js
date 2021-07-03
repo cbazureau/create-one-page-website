@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 /**
  * Copyright (c) 2021-present, Cédric Bazureau.
  * Mostly inspired by https://github.com/facebook/create-react-app
@@ -5,8 +8,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-'use strict';
 
+const os = require('os');
 const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
@@ -77,27 +80,24 @@ module.exports = (appPath, appName, originalDirectory, templateName) => {
 
   // Keys from templatePackage that will be added to appPackage,
   // replacing any existing entries.
-  const templatePackageToReplace = Object.keys(templatePackage).filter(key => {
-    return (
+  const templatePackageToReplace = Object.keys(templatePackage).filter(
+    key =>
       !templatePackageBlacklist.includes(key) &&
       !templatePackageToMerge.includes(key)
-    );
-  });
+  );
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
 
   // Setup the script rules
   const templateScripts = templatePackage.scripts || {};
-  appPackage.scripts = Object.assign(
-    {
-      start: 'cow-scripts start',
-      build: 'cow-scripts build',
-      test: 'cow-scripts test',
-      eject: 'cow-scripts eject',
-    },
-    templateScripts
-  );
+  appPackage.scripts = {
+    start: 'cow-scripts start',
+    build: 'cow-scripts build',
+    test: 'cow-scripts test',
+    eject: 'cow-scripts eject',
+    ...templateScripts,
+  };
 
   // Add templatePackage keys/values to appPackage, replacing existing entries
   templatePackageToReplace.forEach(key => {
@@ -108,18 +108,17 @@ module.exports = (appPath, appName, originalDirectory, templateName) => {
     path.join(appPath, 'package.json'),
     JSON.stringify(appPackage, null, 2) + os.EOL
   );
-  
 
   // Remove template
   console.log(`Removing template package using ${command}...`);
   console.log();
 
+  const args = ['uninstall', templateName];
   const proc = spawn.sync(command, ['uninstall', templateName], {
     stdio: 'inherit',
   });
   if (proc.status !== 0) {
     console.error(`\`${command} ${args.join(' ')}\` failed`);
-    return;
+    process.exit(1);
   }
-
 };

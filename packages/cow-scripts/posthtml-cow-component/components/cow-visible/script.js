@@ -1,3 +1,4 @@
+/* eslint-disable */
 document.addEventListener('DOMContentLoaded', function () {
   const imageObserver = new IntersectionObserver((entries, imgObserver) => {
     entries.forEach(entry => {

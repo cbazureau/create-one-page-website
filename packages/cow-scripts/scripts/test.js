@@ -1,2 +1,3 @@
-console.log('cow-scripts test')
+/* eslint-disable no-console */
+console.log('cow-scripts test');
 process.exit(0);

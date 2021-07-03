@@ -5,12 +5,12 @@ const options = {
   detailedReport: true,
 };
 
-(async function () {
+(async () => {
   // Initializes a bundler using the entrypoint location and options provided
-  const bundler = getBundler();
+  const bundler = getBundler(options);
 
   // Run the bundler, this returns the main bundle
   // Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
-  const bundle = await bundler.bundle();
+  await bundler.bundle();
   process.exit(0);
 })();

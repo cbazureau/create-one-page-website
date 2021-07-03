@@ -3,7 +3,8 @@ const path = require('path');
 const parser = require('posthtml-parser');
 
 module.exports = {
-  processor: ({ attrs = {}, content = [] }, { workingDir }) => {
+  name: 'cow-inline-svg',
+  processor: ({ attrs = {} }, { workingDir }) => {
     const { className, src } = attrs;
 
     const file = path.join(workingDir, './src', src);

@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 /**
  * Copyright (c) 2021-present, Cédric Bazureau.
  * Mostly inspired by https://github.com/facebook/create-react-app
@@ -75,10 +78,7 @@ const getInstallPackage = (version, originalDirectory) => {
 const getPackageName = installPackage => {
   if (installPackage.match(/^file:/)) {
     const installPackagePath = installPackage.match(/^file:(.*)?$/)[1];
-    const { name, version } = require(path.join(
-      installPackagePath,
-      'package.json'
-    ));
+    const { name } = require(path.join(installPackagePath, 'package.json'));
     return { name };
   }
   return { name: installPackage };
@@ -177,9 +177,8 @@ function isSafeToCreateProjectIn(root, name) {
     'yarn-error.log',
     'yarn-debug.log',
   ];
-  const isErrorLog = file => {
-    return errorLogFilePatterns.some(pattern => file.startsWith(pattern));
-  };
+  const isErrorLog = file =>
+    errorLogFilePatterns.some(pattern => file.startsWith(pattern));
 
   const conflicts = fs
     .readdirSync(root)
@@ -194,7 +193,7 @@ function isSafeToCreateProjectIn(root, name) {
       `The directory ${chalk.green(name)} contains files that could conflict:`
     );
     console.log();
-    for (const file of conflicts) {
+    conflicts.forEach(file => {
       try {
         const stats = fs.lstatSync(path.join(root, file));
         if (stats.isDirectory()) {
@@ -205,7 +204,8 @@ function isSafeToCreateProjectIn(root, name) {
       } catch (e) {
         console.log(`  ${file}`);
       }
-    }
+    });
+
     console.log();
     console.log(
       'Either try using a new directory name, or remove the files listed above.'
@@ -231,8 +231,8 @@ function isSafeToCreateProjectIn(root, name) {
  * @param {*} source
  * @returns
  */
-const executeNodeScript = ({ cwd, args }, data, source) => {
-  return new Promise((resolve, reject) => {
+const executeNodeScript = ({ cwd, args }, data, source) =>
+  new Promise((resolve, reject) => {
     const child = spawn(
       process.execPath,
       [...args, '-e', source, '--', JSON.stringify(data)],
@@ -241,15 +241,16 @@ const executeNodeScript = ({ cwd, args }, data, source) => {
 
     child.on('close', code => {
       if (code !== 0) {
-        reject({
-          command: `node ${args.join(' ')}`,
-        });
+        reject(
+          new Error({
+            command: `node ${args.join(' ')}`,
+          })
+        );
         return;
       }
       resolve();
     });
   });
-};
 
 /**
  * createOnePageWebsite
@@ -272,14 +273,14 @@ const createOnePageWebsite = (name, version, template) =>
 
     console.log(`Creating a new One-page Website in ${chalk.green(root)}.`);
     console.log();
-    const packageJson = {
+    const defaultPackageJson = {
       name: appName,
       version: '0.1.0',
       private: true,
     };
     fs.writeFileSync(
       path.join(root, 'package.json'),
-      JSON.stringify(packageJson, null, 2) + os.EOL
+      JSON.stringify(defaultPackageJson, null, 2) + os.EOL
     );
 
     const originalDirectory = process.cwd();
@@ -305,9 +306,11 @@ const createOnePageWebsite = (name, version, template) =>
     const child = spawn(command, args, { stdio: 'inherit' });
     child.on('close', code => {
       if (code !== 0) {
-        reject({
-          command: `${command} ${args.join(' ')}`,
-        });
+        reject(
+          new Error({
+            command: `${command} ${args.join(' ')}`,
+          })
+        );
         return;
       }
       const packageName = getPackageName(packageToInstall).name;
