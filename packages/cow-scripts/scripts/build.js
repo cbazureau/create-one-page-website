@@ -2,7 +2,6 @@ const getBundler = require('../utils/bundler');
 
 const options = {
   minify: true,
-  detailedReport: true,
 };
 
 (async () => {

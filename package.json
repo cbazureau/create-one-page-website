@@ -14,12 +14,14 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "lint": "eslint ./packages/",
-    "format": "prettier --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'"
+    "lint": "eslint ./packages/"
   },
   "lint-staged": {
-    "*.{js,json,yml,yaml,css,scss,ts,tsx,md}": [
+    "*.{js,json,yml,yaml,css,scss,ts,tsx,md,html}": [
       "prettier --write"
+    ],
+    "./packages/**/*.js": [
+      "eslint"
     ]
   },
   "engines":{
