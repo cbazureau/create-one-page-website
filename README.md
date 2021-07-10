@@ -1,6 +1,6 @@
 # Create One-page website
 
-![npm test](https://github.com/cbazureau/create-one-page-website/actions/workflows/testing.yml/badge.svg)
+![npm test](https://github.com/cbazureau/create-one-page-website/actions/workflows/main.yml/badge.svg)
 
 🚧 🚧 BUILD IN PROGRESS 🚧 🚧
 
