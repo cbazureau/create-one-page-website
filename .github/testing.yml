@@ -1,5 +1,8 @@
 name: Build and test
-on: [pull_request]
+on:
+  push:
+    branches:
+      - '**'        # matches every branch
 
 jobs:
   build:
