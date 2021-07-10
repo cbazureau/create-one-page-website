@@ -1,5 +1,7 @@
 # Create One-page website
 
+![npm test](https://github.com/cbazureau/create-one-page-website/actions/workflows/testing.yml/badge.svg)
+
 🚧 🚧 BUILD IN PROGRESS 🚧 🚧
 
 Create a static and optimized one-page website with no build configuration.
