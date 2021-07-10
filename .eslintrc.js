@@ -17,5 +17,6 @@ module.exports = {
     test: true,
     expect: true,
     beforeEach: true,
+    afterEach: true,
   },
 };
