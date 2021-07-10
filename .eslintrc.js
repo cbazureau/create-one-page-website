@@ -13,7 +13,9 @@ module.exports = {
     'prettier/prettier': 'error',
   },
   globals: {
+    jest: true,
     test: true,
     expect: true,
+    beforeEach: true,
   },
 };

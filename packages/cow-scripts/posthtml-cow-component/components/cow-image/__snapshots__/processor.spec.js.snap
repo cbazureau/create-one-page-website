@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cow-image with className 1`] = `
+Object {
+  "attrs": Object {
+    "class": "CowImage MyClassName",
+  },
+  "content": Array [
+    Object {
+      "attrs": Object {
+        "data-srcset": "../mocks/fake.375.webp 375w, ../mocks/fake.640.webp 640w, ../mocks/fake.750.webp 750w, ../mocks/fake.1024.webp 1024w, ../mocks/fake.1280.webp 1280w, ../mocks/fake.2048.webp 2048w, ../mocks/fake.2560.webp 2560w",
+        "sizes": "100vw",
+        "type": "image/webp",
+      },
+      "tag": "source",
+    },
+    Object {
+      "attrs": Object {
+        "data-srcset": "../mocks/fake.375.jpg 375w, ../mocks/fake.640.jpg 640w, ../mocks/fake.750.jpg 750w, ../mocks/fake.1024.jpg 1024w, ../mocks/fake.1280.jpg 1280w, ../mocks/fake.2048.jpg 2048w, ../mocks/fake.2560.jpg 2560w",
+        "sizes": "100vw",
+        "type": "image/jpeg",
+      },
+      "tag": "source",
+    },
+    Object {
+      "attrs": Object {
+        "alt": "my alt",
+        "class": "CowImage__img MyClassName__img",
+        "data-src": "../mocks/fake.375.jpg",
+        "src": "../mocks/fake.24.png",
+      },
+      "tag": "img",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "attrs": Object {
+            "alt": "my alt",
+            "class": "CowImage__img MyClassName__img",
+            "src": "../mocks/fake.375.jpg",
+          },
+          "tag": "img",
+        },
+      ],
+      "tag": "noscript",
+    },
+  ],
+  "tag": "picture",
+}
+`;
+
+exports[`cow-image with png 1`] = `
+Object {
+  "attrs": Object {
+    "class": "CowImage MyClassName",
+  },
+  "content": Array [
+    Object {
+      "attrs": Object {
+        "alt": "my alt",
+        "class": "CowImage__img MyClassName__img",
+        "data-src": "../mocks/fake.png",
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg==",
+      },
+      "tag": "img",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "attrs": Object {
+            "alt": "my alt",
+            "class": "CowImage__img MyClassName__img",
+            "src": "../mocks/fake.png",
+          },
+          "tag": "img",
+        },
+      ],
+      "tag": "noscript",
+    },
+  ],
+  "tag": "picture",
+}
+`;
