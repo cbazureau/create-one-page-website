@@ -2,9 +2,6 @@
   "name": "cow-template",
   "version": "0.0.5",
   "description": "The base template for Create One-page Website",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cbazureau/create-one-page-website.git",

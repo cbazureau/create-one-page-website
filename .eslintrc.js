@@ -12,4 +12,8 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
   },
+  globals: {
+    test: true,
+    expect: true,
+  },
 };
