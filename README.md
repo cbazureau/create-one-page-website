@@ -15,7 +15,7 @@ If you have questions or need help, please ask in GitHub Discussions.
 
 ## Quick Overview
 
-**You’ll need to have Node 14 or later version on your local development machine**. We recommend using the latest LTS version. You can use [nvm](https://github.com/creationix/nvm#installation) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to switch Node versions between different projects.
+**You’ll need to have Node 14 or later version and NPM 7 on your local development machine**. We recommend using the latest LTS version. You can use [nvm](https://github.com/creationix/nvm#installation) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to switch Node versions between different projects.
 
 ```sh
 npx create-one-page-website my-page
