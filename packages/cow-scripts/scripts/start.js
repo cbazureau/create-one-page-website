@@ -2,9 +2,13 @@ const getBundler = require('../utils/bundler');
 
 // Bundler options
 const options = {
-  watch: true,
-  hmr: true,
-  sourceMaps: true,
+  // sourceMaps: true,
+  serveOptions: {
+    port: 3000,
+  },
+  hmrOptions: {
+    port: 3000,
+  },
 };
 
 (async () => {
@@ -13,5 +17,19 @@ const options = {
 
   // Run the bundler, this returns the main bundle
   // Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
-  await bundler.serve();
+  await bundler.watch((err, event) => {
+    if (err) {
+      // fatal error
+      throw err;
+    }
+
+    if (event.type === 'buildSuccess') {
+      const bundles = event.bundleGraph.getBundles();
+      console.log(
+        `✨ Built ${bundles.length} bundles in ${event.buildTime}ms!`
+      );
+    } else if (event.type === 'buildFailure') {
+      console.log(event.diagnostics);
+    }
+  });
 })();

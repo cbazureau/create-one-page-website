@@ -1,15 +1,19 @@
 const getBundler = require('../utils/bundler');
 
 const options = {
-  minify: true,
+  mode: 'production',
 };
 
 (async () => {
   // Initializes a bundler using the entrypoint location and options provided
   const bundler = getBundler(options);
+  try {
+    const { bundleGraph, buildTime } = await bundler.run();
+    const bundles = bundleGraph.getBundles();
+    console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
+  } catch (e) {
+    console.log(e.diagnostics[0]);
+  }
 
-  // Run the bundler, this returns the main bundle
-  // Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
-  await bundler.bundle();
   process.exit(0);
 })();

@@ -4,7 +4,7 @@ const workingDir = __dirname;
 
 test('cow-inline-svg', () => {
   const node = {
-    attrs: { className: 'MyClassName', src: '../mocks/test.svg' },
+    attrs: { classname: 'MyClassName', src: '../mocks/test.svg' },
   };
   expect(name).toEqual('cow-inline-svg');
   expect(processor(node, { workingDir })).toEqual({

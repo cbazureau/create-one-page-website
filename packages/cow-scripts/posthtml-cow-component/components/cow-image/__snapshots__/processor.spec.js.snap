@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cow-image with className 1`] = `
+exports[`cow-image with classname 1`] = `
 Object {
   "attrs": Object {
     "class": "CowImage MyClassName",

@@ -24,7 +24,7 @@ jest.mock('sharp', () => a => {
 });
 
 const node = {
-  attrs: { className: 'MyClassName', src: '../mocks/fake.jpg', alt: 'my alt' },
+  attrs: { classname: 'MyClassName', src: '../mocks/fake.jpg', alt: 'my alt' },
   content: [],
 };
 
@@ -32,7 +32,7 @@ beforeEach(() => {
   mockSharp.mockReset();
 });
 
-test('cow-image with className', () => {
+test('cow-image with classname', () => {
   const output = processor(node, { workingDir });
   expect(name).toEqual('cow-image');
   expect(output.attrs.class).toEqual('CowImage MyClassName');
@@ -61,10 +61,10 @@ test('cow-image with className', () => {
   ]);
 });
 
-test('cow-image without className', () => {
+test('cow-image without classname', () => {
   const customNode = {
     ...node,
-    attrs: { ...node.attrs, className: undefined },
+    attrs: { ...node.attrs, classname: undefined },
   };
   const output = processor(customNode, { workingDir });
   expect(output.attrs.class).toEqual('CowImage');

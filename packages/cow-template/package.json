@@ -19,5 +19,9 @@
   "engines": {
     "node": ">=14"
   },
-  "homepage": "https://github.com/cbazureau/create-one-page-website#readme"
+  "homepage": "https://github.com/cbazureau/create-one-page-website#readme",
+  "alias": {
+    "@parcel": "cow-scripts/node_modules/@parcel",
+    "parcel-transformer-html-datasrc": "cow-scripts/node_modules/parcel-transformer-html-datasrc"
+  }
 }
