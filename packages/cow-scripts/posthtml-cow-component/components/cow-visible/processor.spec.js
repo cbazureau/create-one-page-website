@@ -1,7 +1,7 @@
 const { processor, name } = require('./processor');
 
 const node = {
-  attrs: { className: 'MyClassName', otherProps: 'other' },
+  attrs: { classname: 'MyClassName', otherProps: 'other' },
   content: [
     {
       attrs: {
@@ -13,7 +13,7 @@ const node = {
   ],
 };
 
-test('cow-visibile with className', () => {
+test('cow-visibile with classname', () => {
   expect(name).toEqual('cow-visible');
   expect(processor(node, {})).toEqual({
     attrs: {
@@ -24,7 +24,7 @@ test('cow-visibile with className', () => {
   });
 });
 
-test('cow-visibile without className', () => {
+test('cow-visibile without classname', () => {
   const customNode = {
     ...node,
     attrs: {},

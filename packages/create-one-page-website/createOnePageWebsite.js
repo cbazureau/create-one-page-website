@@ -134,8 +134,6 @@ const getTemplateInstallPackage = (template, originalDirectory) => {
       }
     }
   }
-
-  console.log('templateToInstall', template, templateToInstall);
   return templateToInstall;
 };
 

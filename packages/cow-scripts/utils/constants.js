@@ -1,7 +1,7 @@
 const srcFolder = 'src/';
 const buildFolder = 'dist/';
 const imgFolder = 'img/';
-const cacheFolder = '.cache/';
+const cacheFolder = '.parcel-cache/';
 const tmpFolder = '.cow-temp/';
 const indexFile = 'index.html';
 

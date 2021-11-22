@@ -73,9 +73,9 @@ const buildSrcSet = (src, format) =>
 module.exports = {
   name: 'cow-image',
   processor: ({ attrs = {} }, { workingDir }) => {
-    const { src, alt, sizes, className } = attrs;
-    const pictureClassName = ['CowImage', className].filter(c => !!c).join(' ');
-    const imgClassName = ['CowImage', className]
+    const { src, alt, sizes, classname } = attrs;
+    const pictureClassName = ['CowImage', classname].filter(c => !!c).join(' ');
+    const imgClassName = ['CowImage', classname]
       .filter(c => !!c)
       .map(c => `${c}__img`)
       .join(' ');
