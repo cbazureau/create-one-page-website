@@ -1,0 +1,1 @@
+{"mappings":"0vCACAA,QAAQC,IAAI","sources":["src/js/main.js"],"sourcesContent":["// eslint-disable-next-line no-console\nconsole.log('cow example');\n"],"names":["console","log"],"version":3,"file":"index.93c5b169.js.map"}

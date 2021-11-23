@@ -1,5 +1,10 @@
 {
     "package": {
-        "browserslist": "> 0.5%, last 2 versions, not dead"
+        "browserslist": "> 0.5%, last 2 versions, not dead",
+        "targets": {
+          "default": {
+            "publicUrl": "/create-one-page-website/"
+          }
+        }
     }
 }
