@@ -1,4 +1,4 @@
-const getBundler = require('../utils/bundler');
+const { getBundler } = require('../utils/bundler');
 
 // Bundler options
 const options = {

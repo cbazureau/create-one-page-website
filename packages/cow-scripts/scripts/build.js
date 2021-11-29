@@ -1,7 +1,13 @@
-const getBundler = require('../utils/bundler');
+const { getBundler, resolveApp } = require('../utils/bundler');
+const { postHtmlConfigFile } = require('../utils/constants');
+// eslint-disable-next-line import/no-dynamic-require
+const postHtmlConfig = require(resolveApp(postHtmlConfigFile));
 
 const options = {
   mode: 'production',
+  defaultTargetOptions: {
+    publicUrl: postHtmlConfig?.publicUrl || '/',
+  },
 };
 
 (async () => {

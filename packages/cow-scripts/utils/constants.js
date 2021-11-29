@@ -4,6 +4,7 @@ const imgFolder = 'img/';
 const cacheFolder = '.parcel-cache/';
 const tmpFolder = '.cow-temp/';
 const indexFile = 'index.html';
+const postHtmlConfigFile = 'posthtml.config.js';
 
 module.exports = {
   srcFolder,
@@ -12,4 +13,5 @@ module.exports = {
   indexFile,
   imgFolder,
   tmpFolder,
+  postHtmlConfigFile,
 };

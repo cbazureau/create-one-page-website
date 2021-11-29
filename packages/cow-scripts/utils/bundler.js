@@ -1,11 +1,10 @@
 const { Parcel } = require('@parcel/core');
 const fs = require('fs-extra');
 const path = require('path');
+const { srcFolder, buildFolder, indexFile } = require('./constants');
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
-
-const { srcFolder, buildFolder, indexFile } = require('./constants');
 
 // Single entrypoint file location:
 const entryFiles = resolveApp(`${srcFolder}${indexFile}`);
@@ -36,4 +35,7 @@ const getBundler = options => {
   return bundler;
 };
 
-module.exports = getBundler;
+module.exports = {
+  getBundler,
+  resolveApp,
+};
