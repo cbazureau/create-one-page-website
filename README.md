@@ -2,12 +2,12 @@
 
 ![npm test](https://github.com/cbazureau/create-one-page-website/actions/workflows/main.yml/badge.svg)
 
-🚧 🚧 BUILD IN PROGRESS 🚧 🚧
+🚧 🚧 EARLY STAGE PROJECT 🚧 🚧
 
 Create a static and optimized one-page website with no build configuration.
 
 - [Creating your One-page website](https://github.com/cbazureau/create-one-page-website) – How to create a new one-page website
-- [User Guide](https://github.com/cbazureau/create-one-page-website) – How to develop one-page website bootstrapped Create One-page Website.
+- [User Guide](https://cbazureau.github.io/create-one-page-website/) – How to develop one-page website bootstrapped Create One-page Website.
 
 Create One-page Website works on macOS, Windows, and Linux.
 If something doesn’t work, please file an issue.
