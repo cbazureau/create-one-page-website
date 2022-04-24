@@ -1,6 +1,6 @@
 {
   "name": "cow-scripts",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Configuration and scripts for Create One-page Website",
   "scripts": {
     "test": "jest .*.spec.js"
