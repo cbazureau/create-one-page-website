@@ -352,7 +352,7 @@ pre::before {
 }
 @media (min-width: 800px) {
   .Documentation {
-    margin: 64px 0;
+    margin: 64px 0 0;
   }
 }
 
@@ -397,6 +397,10 @@ pre::before {
   background-color: var(--cow-white);
   border-radius: 4px;
   margin: 12px;
+  padding-bottom: 12px;
+}
+
+.Documentation__detail {
   padding-bottom: 12px;
 }
 
@@ -460,4 +464,19 @@ table tbody tr:nth-of-type(even) {
 
 table tbody tr:last-of-type {
   border-bottom: 2px solid var(--cow-brown);
+}
+
+footer {
+  background-color: var(--cow-medium-gray);
+  color: var(--cow-white);
+  padding: 8px 16px;
+  font-size: 1.2rem;
+}
+
+footer a {
+  color: var(--cow-white);
+}
+
+footer p:first-child {
+  font-weight: bold;
 }

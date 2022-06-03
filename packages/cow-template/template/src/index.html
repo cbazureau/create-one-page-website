@@ -305,6 +305,50 @@ npm start</pre
               </tbody>
             </table>
           </section>
+          <section>
+            <h3>&lt;cow-manifest-favicon /&gt;</h3>
+            <p>Generate a manifest and all favicon/manifest link tags</p>
+            <p>How you write it :</p>
+            <pre>
+&lt;cow-manifest-favicon
+  src="../img/at-least-512x521-favicon.png"
+&gt;&lt;/cow-manifest-favicon&gt;</pre
+            >
+            <p>How it's transpiled :</p>
+            <pre class="large">
+&lt;link href="/up_/.cow-temp/manifest.webmanifest" rel="manifest"&gt;
+&lt;link href="/favicon.05986af7.ico" rel="shortcut icon"&gt;
+&lt;link href="/favicon192x192.d2361344.png" rel="icon" sizes="192x192"&gt;
+&lt;link href="/favicon192x192.d2361344.png" rel="apple-touch-icon"&gt;</pre
+            >
+            <p>Attributes available :</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>attributes</th>
+                  <th>values</th>
+                  <th>default</th>
+                  <th>comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>src</td>
+                  <td>ex: "../img/favicon.png"</td>
+                  <td>none</td>
+                  <td>
+                    path of your favicon png (at least a 512x512 png image)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h3>&lt;cow-serviceworker /&gt;</h3>
+            <p>Add a service worker to your one-page website.</p>
+            <p>How you write it :</p>
+            <pre>&lt;cow-serviceworker&gt;&lt;/cow-serviceworker&gt;</pre>
+          </section>
         </div>
       </cow-visible>
     </section>
@@ -319,5 +363,6 @@ npm start</pre
       </p>
     </footer>
     <script type="module" src="js/main.js"></script>
+    <cow-serviceworker></cow-serviceworker>
   </body>
 </html>
