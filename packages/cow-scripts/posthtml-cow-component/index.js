@@ -4,8 +4,9 @@ const path = require('path');
 const cowImage = require(`./components/cow-image/processor`);
 const cowVisible = require(`./components/cow-visible/processor`);
 const cowInlineSvg = require(`./components/cow-inline-svg/processor`);
+const cowManifestFavicon = require(`./components/cow-manifest-favicon/processor`);
 
-const TAGS = [cowImage, cowVisible, cowInlineSvg];
+const TAGS = [cowImage, cowVisible, cowInlineSvg, cowManifestFavicon];
 
 module.exports = options => (tree, cb) => {
   const importedTags = [];
@@ -13,6 +14,7 @@ module.exports = options => (tree, cb) => {
     let count = 0;
     tree.match({ tag: name }, node => {
       count += 1;
+      if (name === 'cow-manifest-favicon') console.log(node);
       return processor(node, options);
     });
     if (count > 0) {

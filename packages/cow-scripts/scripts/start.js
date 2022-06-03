@@ -1,13 +1,15 @@
 const { getBundler } = require('../utils/bundler');
 
+const PORT = 3000;
+
 // Bundler options
 const options = {
   // sourceMaps: true,
   serveOptions: {
-    port: 3000,
+    port: PORT,
   },
   hmrOptions: {
-    port: 3000,
+    port: PORT,
   },
 };
 
@@ -28,6 +30,7 @@ const options = {
       console.log(
         `✨ Built ${bundles.length} bundles in ${event.buildTime}ms!`
       );
+      console.log(`You can go to http://localhost:${PORT}`);
     } else if (event.type === 'buildFailure') {
       console.log(event.diagnostics);
     }

@@ -393,16 +393,40 @@ pre::before {
   }
 }
 
+.Documentation section {
+  background-color: var(--cow-white);
+  border-radius: 4px;
+  margin: 12px;
+  padding-bottom: 12px;
+}
+
 .Documentation__detail h3 {
   font-size: 2.5rem;
   padding: 24px;
   margin: 0;
   font-weight: bold;
+  color: var(--cow-dark-brown);
+  background-color: var(--cow-light-brown);
+  border-radius: 4px 4px 0 0;
 }
+
 .Documentation__detail p {
   font-size: 2rem;
-  padding: 24px;
+  padding: 12px;
   margin: 0;
+}
+
+@media (min-width: 800px) {
+  .Documentation section {
+    margin: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+@media (min-width: 800px) {
+  .Documentation__detail p {
+    padding: 24px;
+  }
 }
 
 table {
@@ -411,7 +435,8 @@ table {
   font-size: 2rem;
   font-family: sans-serif;
   width: 900px;
-  max-width: calc(100% - 32px);
+  width: calc(100% - 32px);
+  word-break: break-word;
 }
 
 table thead tr {

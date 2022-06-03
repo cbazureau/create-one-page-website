@@ -1,150 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width,initial-scale=1,shrink-to-fit=no"
+      name="viewport"
+    />
+    <meta content="#000000" name="theme-color" />
+    <cow-manifest-favicon
+      src="../img/original-favicon.png"
+    ></cow-manifest-favicon>
+    <title>Create one-page website</title>
+    <meta name="description" content="Create one-page website" />
+    <meta name="author" content="PUT-YOUR-NAME-HERE" />
+    <link href="./css/styles.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Create one-page website</title>
-  <meta name="description" content="Create one-page website" />
-  <meta name="author" content="PUT-YOUR-NAME-HERE" />
-  <link href="./css/styles.css" rel="stylesheet" />
-</head>
-
-<body>
-  <header>
-    <cow-inline-svg src="../img/cow.svg" className="HeaderImg"></cow-inline-svg>
-    <h1>Create One-page Website</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="#how-to-start">How to start</a></li>
-      <li><a href="#optimized">What do you mean by "optimized" ?</a></li>
-      <li><a href="#documentation">Documentation</a></li>
-    </ul>
-  </nav>
-  <section>
-    <cow-visible className="HowToStart">
-      <h2 id="how-to-start" class="HowToStart__title">How to start</h2>
-      <cow-image src="../img/how-to-start.jpg" alt="how to start" className="HowToStart__image"></cow-image>
-      <div class="HowToStart__detail">
-        <p>
-          You’ll need to have Node 14 or later version on your local
-          development machine. We recommend using the latest LTS version. You
-          can use
-          <a href="https://github.com/creationix/nvm#installation">nvm (macOS/Linux)</a>
-          or
-          <a href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows">nvm-windows</a>
-          to switch Node versions between different projects.
-        </p>
-        <pre>
+  <body>
+    <header>
+      <cow-inline-svg
+        src="../img/cow.svg"
+        className="HeaderImg"
+      ></cow-inline-svg>
+      <h1>Create One-page Website</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#how-to-start">How to start</a></li>
+        <li><a href="#optimized">What do you mean by "optimized" ?</a></li>
+        <li><a href="#documentation">Documentation</a></li>
+      </ul>
+    </nav>
+    <section>
+      <cow-visible className="HowToStart">
+        <h2 id="how-to-start" class="HowToStart__title">How to start</h2>
+        <cow-image
+          src="../img/how-to-start.jpg"
+          alt="how to start"
+          className="HowToStart__image"
+        ></cow-image>
+        <div class="HowToStart__detail">
+          <p>
+            You’ll need to have Node 14 or later version on your local
+            development machine. We recommend using the latest LTS version. You
+            can use
+            <a href="https://github.com/creationix/nvm#installation"
+              >nvm (macOS/Linux)</a
+            >
+            or
+            <a
+              href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows"
+              >nvm-windows</a
+            >
+            to switch Node versions between different projects.
+          </p>
+          <pre>
 npx create-one-page-website my-page
 cd my-page
-npm start</pre>
-        <p>
-          You can now start to code with your prefered IDE. Default template
-          is the one that is used to produce the current page. For more
-          information about the syntax please read the
-          <a href="#documentation">documentation below</a>.
-        </p>
-      </div>
-    </cow-visible>
-    <cow-visible className="Optimized">
-      <h2 id="optimized" class="Optimized__title">
-        What do you mean by "optimized" ?
-      </h2>
-      <cow-image src="../img/optimized.jpg" alt="image 1" className="Optimized__image"></cow-image>
-      <div class="Optimized__detail">
-        <p>
-          Intersection Observer,
-          <a href="/serve-images-webp/">WebP support</a> and
-          <a
-            href="/use-srcset-to-automatically-choose-the-right-image/#help-the-browser-choose-the-right-image-size"><code>srcset</code></a>/<a
-            href="/use-srcset-to-automatically-choose-the-right-image/#what-about-the-display-size-of-the-image"><code>sizes</code></a>
-          attributes,
-          <a href="https://web.dev/lazy-loading-images/#images-inline-intersection-observer">Lazy Loading</a>,
-          Triggering animations when your element is visible, ES module
-          modern build with legacy build fallback ... All this concepts can be
-          boring or tiring to implement. You've got a lot of heavy frameworks,
-          libraries that deal with this issues but could impact Core Web
-          Vitals even if they tried to improve them.
-        </p>
-        <p>
-          <strong>Create one-page website</strong> deals with all this common
-          patterns by providing several components that use minimal footprint.
-          For example "cow-visible" component is used like this :
-        </p>
-        <pre>
+npm start</pre
+          >
+          <p>
+            You can now start to code with your prefered IDE. Default template
+            is the one that is used to produce the current page. For more
+            information about the syntax please read the
+            <a href="#documentation">documentation below</a>.
+          </p>
+        </div>
+      </cow-visible>
+      <cow-visible className="Optimized">
+        <h2 id="optimized" class="Optimized__title">
+          What do you mean by "optimized" ?
+        </h2>
+        <cow-image
+          src="../img/optimized.jpg"
+          alt="image 1"
+          className="Optimized__image"
+        ></cow-image>
+        <div class="Optimized__detail">
+          <p>
+            Intersection Observer,
+            <a href="/serve-images-webp/">WebP support</a> and
+            <a
+              href="/use-srcset-to-automatically-choose-the-right-image/#help-the-browser-choose-the-right-image-size"
+              ><code>srcset</code></a
+            >/<a
+              href="/use-srcset-to-automatically-choose-the-right-image/#what-about-the-display-size-of-the-image"
+              ><code>sizes</code></a
+            >
+            attributes,
+            <a
+              href="https://web.dev/lazy-loading-images/#images-inline-intersection-observer"
+              >Lazy Loading</a
+            >, Triggering animations when your element is visible, ES module
+            modern build with legacy build fallback ... All this concepts can be
+            boring or tiring to implement. You've got a lot of heavy frameworks,
+            libraries that deal with this issues but could impact Core Web
+            Vitals even if they tried to improve them.
+          </p>
+          <p>
+            <strong>Create one-page website</strong> deals with all this common
+            patterns by providing several components that use minimal footprint.
+            For example "cow-visible" component is used like this :
+          </p>
+          <pre>
 &lt;cow-visible className="MyClass"&gt;
   &lt;some-html /&gt;
-&lt;/cow-visible&gt;</pre>
-        <p>will be transpiled like this</p>
-        <pre>
+&lt;/cow-visible&gt;</pre
+          >
+          <p>will be transpiled like this</p>
+          <pre>
 &lt;div class="MyClass <span style="color:gold">is-visible</span>"&gt;
   &lt;some-html /&gt;
 &lt;/div&gt;</pre>
-        <p>
-          where the "is-visible" class is added when the div become visible.
-        </p>
-        <p>
-          For more information and to see all the components available, see
-          the <a href="#documentation">documentation below</a>
-        </p>
-      </div>
-    </cow-visible>
-    <cow-visible className="Documentation">
-      <h2 id="documentation" class="Documentation__title">Documentation</h2>
-      <cow-image src="../img/documentation.jpg" alt="image" className="Documentation__image"></cow-image>
-      <div class="Documentation__detail">
-        <h3>&lt;cow-visible /&gt;</h3>
-        <p>
-          Generate a div tag with the className provided. Intersection
-          Observer is set on this element, when it's trigger the first time
-          the "is-visible" class is added once and for all.
-        </p>
-        <p>How you write it :</p>
-        <pre>
+          <p>
+            where the "is-visible" class is added when the div become visible.
+          </p>
+          <p>
+            For more information and to see all the components available, see
+            the <a href="#documentation">documentation below</a>
+          </p>
+        </div>
+      </cow-visible>
+      <cow-visible className="Documentation">
+        <h2 id="documentation" class="Documentation__title">Documentation</h2>
+        <cow-image
+          src="../img/documentation.jpg"
+          alt="image"
+          className="Documentation__image"
+        ></cow-image>
+        <div class="Documentation__detail">
+          <section>
+            <h3>&lt;cow-visible /&gt;</h3>
+            <p>
+              Generate a div tag with the className provided. Intersection
+              Observer is set on this element, when it's trigger the first time
+              the "is-visible" class is added once and for all.
+            </p>
+            <p>How you write it :</p>
+            <pre>
 &lt;cow-visible className="MyClass"&gt;
   &lt;some-html /&gt;
-&lt;/cow-visible&gt;</pre>
-        <p>How it's transpiled :</p>
-        <pre>
+&lt;/cow-visible&gt;</pre
+            >
+            <p>How it's transpiled :</p>
+            <pre>
 &lt;div class="MyClass <span style="color:gold">is-visible</span>"&gt;
   &lt;some-html /&gt;
 &lt;/div&gt;</pre>
-        <p>Attributes available :</p>
-        <table>
-          <thead>
-            <tr>
-              <th>attributes</th>
-              <th>values</th>
-              <th>default</th>
-              <th>comments</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>className</td>
-              <td>ex: MyClass</td>
-              <td>none</td>
-              <td>class that will be set on the transpiled element</td>
-            </tr>
-          </tbody>
-        </table>
-        <h3>&lt;cow-image /&gt;</h3>
-        <p>
-          Generate all the rendition (webp and jpg) for your picture and a
-          picture tag with the className provided, all the srcsets you need
-          and an Intersection Observer to lazy load the image.
-        </p>
-        <p>How you write it :</p>
-        <pre>
+            <p>Attributes available :</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>attributes</th>
+                  <th>values</th>
+                  <th>default</th>
+                  <th>comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>className</td>
+                  <td>ex: MyClass</td>
+                  <td>none</td>
+                  <td>class that will be set on the transpiled element</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h3>&lt;cow-image /&gt;</h3>
+            <p>
+              Generate all the rendition (webp and jpg) for your picture and a
+              picture tag with the className provided, all the srcsets you need
+              and an Intersection Observer to lazy load the image.
+            </p>
+            <p>How you write it :</p>
+            <pre>
 &lt;cow-image
   src="../img/documentation.jpg"
   alt="image"
   className="Documentation"
-&gt;&lt;/cow-image&gt;</pre>
-        <p>How it's transpiled :</p>
-        <pre class="large">
+&gt;&lt;/cow-image&gt;</pre
+            >
+            <p>How it's transpiled :</p>
+            <pre class="large">
 &lt;picture class="CowImage Documentation__image"&gt;
   &lt;source 
     data-srcset="/documentation.375.90b59e55.webp 375w, /documentation.640.08286bba.webp 640w, /documentation.750.31aa2d43.webp 750w, /documentation.1024.f9135dfb.webp 1024w, /documentation.1280.c46dab29.webp 1280w, /documentation.2048.67d6900e.webp 2048w, /documentation.2560.0c4e8c86.webp 2560w" 
@@ -164,118 +203,121 @@ npm start</pre>
       src="/documentation.375.46ad57a5.jpg" alt="image"&gt;
   &lt;/noscript&gt;
 &lt;/picture&gt;
-          </pre>
-        <p>Attributes available :</p>
-        <table>
-          <thead>
-            <tr>
-              <th>attributes</th>
-              <th>values</th>
-              <th>default</th>
-              <th>comments</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>className</td>
-              <td>ex: "MyClass"</td>
-              <td>none</td>
-              <td>
-                class attribute that will be set on the transpiled element
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>alt</td>
-              <td>ex: "My Picture"</td>
-              <td>none</td>
-              <td>
-                alt attribute that will be set on the transpiled element
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>src</td>
-              <td>ex: "../img/documentation.jpg"</td>
-              <td>none</td>
-              <td>
-                raw source of the picture that you want to use. Try to get a
-                large/good quality picture with a ratio that corresponding to
-                your needs
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>sizes</td>
-              <td>ex: "100vw" or ["100vw", "50vw", "33vw"]</td>
-              <td>100vw</td>
-              <td>
-                sizes attribute that will be set on the transpiled element,
-                multiple values use breakpoints configured in your
-                posthtml.config.js file
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h3>&lt;cow-inline-svg /&gt;</h3>
-        <p>
-          Generate an inline version of a svg file.
-        </p>
-        <p>How you write it :</p>
-        <pre>
+          </pre
+            >
+            <p>Attributes available :</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>attributes</th>
+                  <th>values</th>
+                  <th>default</th>
+                  <th>comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>className</td>
+                  <td>ex: "MyClass"</td>
+                  <td>none</td>
+                  <td>
+                    class attribute that will be set on the transpiled element
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td>alt</td>
+                  <td>ex: "My Picture"</td>
+                  <td>none</td>
+                  <td>
+                    alt attribute that will be set on the transpiled element
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td>src</td>
+                  <td>ex: "../img/documentation.jpg"</td>
+                  <td>none</td>
+                  <td>
+                    raw source of the picture that you want to use. Try to get a
+                    large/good quality picture with a ratio that corresponding
+                    to your needs
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td>sizes</td>
+                  <td>ex: "100vw" or ["100vw", "50vw", "33vw"]</td>
+                  <td>100vw</td>
+                  <td>
+                    sizes attribute that will be set on the transpiled element,
+                    multiple values use breakpoints configured in your
+                    posthtml.config.js file
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h3>&lt;cow-inline-svg /&gt;</h3>
+            <p>Generate an inline version of a svg file.</p>
+            <p>How you write it :</p>
+            <pre>
 &lt;cow-inline-svg
   src="../img/cow.svg"
   className="Example"
-&gt;&lt;/cow-inline-svg&gt;</pre>
-        <p>How it's transpiled :</p>
-        <pre class="large">
-&lt;svg class="Example"&gt;...your svg&lt;/svg&gt;</pre>
-        <p>Attributes available :</p>
-        <table>
-          <thead>
-            <tr>
-              <th>attributes</th>
-              <th>values</th>
-              <th>default</th>
-              <th>comments</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>className</td>
-              <td>ex: "MyClass"</td>
-              <td>none</td>
-              <td>
-                class attribute that will be set on the transpiled element
-              </td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>src</td>
-              <td>ex: "../img/my.svg"</td>
-              <td>none</td>
-              <td>
-                path of your svg
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </cow-visible>
-  </section>
-  <footer>
-    <p>Credits</p>
-    <p>
-      Cow icon made by
-      <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
-      <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-    </p>
-  </footer>
-  <script type="module" src="js/main.js"></script>
-</body>
-
+&gt;&lt;/cow-inline-svg&gt;</pre
+            >
+            <p>How it's transpiled :</p>
+            <pre class="large">
+&lt;svg class="Example"&gt;...your svg&lt;/svg&gt;</pre
+            >
+            <p>Attributes available :</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>attributes</th>
+                  <th>values</th>
+                  <th>default</th>
+                  <th>comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>className</td>
+                  <td>ex: "MyClass"</td>
+                  <td>none</td>
+                  <td>
+                    class attribute that will be set on the transpiled element
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td>src</td>
+                  <td>ex: "../img/my.svg"</td>
+                  <td>none</td>
+                  <td>path of your svg</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </cow-visible>
+    </section>
+    <footer>
+      <p>Credits</p>
+      <p>
+        Cow icon made by
+        <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
+        <a href="https://www.flaticon.com/" title="Flaticon"
+          >www.flaticon.com</a
+        >
+      </p>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>
