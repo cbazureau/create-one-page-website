@@ -4,8 +4,16 @@ const path = require('path');
 const cowImage = require(`./components/cow-image/processor`);
 const cowVisible = require(`./components/cow-visible/processor`);
 const cowInlineSvg = require(`./components/cow-inline-svg/processor`);
+const cowManifestFavicon = require(`./components/cow-manifest-favicon/processor`);
+const cowServiceWorker = require(`./components/cow-serviceworker/processor`);
 
-const TAGS = [cowImage, cowVisible, cowInlineSvg];
+const TAGS = [
+  cowImage,
+  cowVisible,
+  cowInlineSvg,
+  cowManifestFavicon,
+  cowServiceWorker,
+];
 
 module.exports = options => (tree, cb) => {
   const importedTags = [];
