@@ -1,4 +1,5 @@
 const { Parcel } = require('@parcel/core');
+const child = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
 const { srcFolder, buildFolder, indexFile } = require('./constants');
@@ -24,11 +25,19 @@ const defaultOptions = {
   // },
 };
 
+const stdout = child.execSync('npm ls --json');
+const isLocal =
+  JSON.parse(stdout)?.dependencies?.['cow-scripts']?.resolved?.startsWith(
+    'file:'
+  );
+
 const getBundler = options => {
   fs.removeSync(resolveApp(buildFolder));
   const bundler = new Parcel({
     entries: entryFiles,
-    defaultConfig: 'cow-scripts/config-default.json',
+    defaultConfig: isLocal
+      ? 'cow-scripts/config-default.json'
+      : '@parcel/config-default',
     ...defaultOptions,
     ...options,
   });
