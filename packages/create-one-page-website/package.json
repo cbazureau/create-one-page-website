@@ -1,6 +1,6 @@
 {
   "name": "create-one-page-website",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Create optimized One-page Websites easily",
   "scripts": {
     "demo": "rm -rf demo/;node index.js demo --template file:../cow-template --scripts-version file:../cow-scripts"
