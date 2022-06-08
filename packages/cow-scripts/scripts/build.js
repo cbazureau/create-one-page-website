@@ -3,6 +3,9 @@ const { postHtmlConfigFile } = require('../utils/constants');
 // eslint-disable-next-line import/no-dynamic-require
 const postHtmlConfig = require(resolveApp(postHtmlConfigFile));
 
+// set NODE_ENV in production mode
+process.env.NODE_ENV = 'production';
+
 const options = {
   mode: 'production',
   defaultTargetOptions: {

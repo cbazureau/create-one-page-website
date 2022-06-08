@@ -2,6 +2,9 @@ const { getBundler } = require('../utils/bundler');
 
 const PORT = 3000;
 
+// set NODE_ENV in development mode
+process.env.NODE_ENV = 'development';
+
 // Bundler options
 const options = {
   // sourceMaps: true,

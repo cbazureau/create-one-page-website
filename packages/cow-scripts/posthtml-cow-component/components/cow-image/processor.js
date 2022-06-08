@@ -1,4 +1,5 @@
 const sharp = require('sharp');
+const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs-extra');
 const { imgFolder: IMG, tmpFolder: TMP } = require('../../../utils/constants');
@@ -32,26 +33,35 @@ const getJpgExt = src => (src.endsWith('.jpeg') ? '.jpeg' : '.jpg');
  */
 const convertImg = async (img, res = {}, format) => {
   const { width, quality } = res;
+  const target = img
+    .replace(IMG, TMP)
+    .replace(getJpgExt(img), `.${width}.${format}`);
+  const filename = target.split(TMP)[1];
   try {
-    const target = img
-      .replace(IMG, TMP)
-      .replace(getJpgExt(img), `.${width}.${format}`);
     if (fs.existsSync(target)) {
-      return Promise.resolve();
+      // eslint-disable-next-line no-console
+      console.log(`  ${chalk.gray(`[cow-image] ${filename} already exists`)}`);
+      return true;
     }
     if (format === 'jpg') {
-      return sharp(img).resize(width).jpeg({ quality }).toFile(target);
+      await sharp(img).resize(width).jpeg({ quality }).toFile(target);
+      // eslint-disable-next-line no-console
+      console.log(`  ${chalk.green(`[cow-image] ${filename} generated`)}`);
+      return true;
     }
     if (format === 'png') {
-      return sharp(img)
+      await sharp(img)
         .resize(width)
         .png({ compressionLevel: Math.round(quality / 10) })
         .toFile(target);
+      // eslint-disable-next-line no-console
+      console.log(`  ${chalk.green(`[cow-image] ${filename} generated`)}`);
+      return true;
     }
     return sharp(img).resize(width).webp({ quality }).toFile(target);
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error(e);
+    console.log(`  ${chalk.red(`[cow-image] ${filename} can't be generated`)}`);
     return Promise.reject();
   }
 };
