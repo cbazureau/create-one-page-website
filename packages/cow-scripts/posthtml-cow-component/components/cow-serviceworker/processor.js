@@ -6,7 +6,7 @@ module.exports = {
   name: 'cow-serviceworker',
   processor: (node, { workingDir }) => {
     fs.ensureDir(path.join(workingDir, TMP));
-    const swPath = `../${TMP}/service-worker.js`;
+    const swPath = `../${TMP}service-worker.js`;
 
     fs.copySync(
       path.join(__dirname, 'service-worker.js'),

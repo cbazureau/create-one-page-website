@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const parser = require('posthtml-parser');
+const { parser } = require('posthtml-parser');
 
 module.exports = {
   name: 'cow-inline-svg',

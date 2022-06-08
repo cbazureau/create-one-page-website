@@ -27,7 +27,7 @@
     <title>Create one-page website</title>
     <meta name="description" content="Create one-page website" />
     <meta name="author" content="PUT-YOUR-NAME-HERE" />
-    <link href="/create-one-page-website/index.d34b2e84.css" rel="stylesheet" />
+    <link href="/create-one-page-website/index.846ce928.css" rel="stylesheet" />
     <style>
       .CowImage {
         display: block;
@@ -513,72 +513,75 @@ npm start</pre
               ? global
               : {},
           r = {},
-          t = {},
-          n = e.parcelRequire6330;
-        null == n &&
-          (((n = function (e) {
+          n = {},
+          t = e.parcelRequire6330;
+        null == t &&
+          (((t = function (e) {
             if (e in r) return r[e].exports;
-            if (e in t) {
-              var n = t[e];
-              delete t[e];
+            if (e in n) {
+              var t = n[e];
+              delete n[e];
               var o = { id: e, exports: {} };
-              return (r[e] = o), n.call(o.exports, o, o.exports), o.exports;
+              return (r[e] = o), t.call(o.exports, o, o.exports), o.exports;
             }
             var i = new Error("Cannot find module '" + e + "'");
             throw ((i.code = 'MODULE_NOT_FOUND'), i);
           }).register = function (e, r) {
-            t[e] = r;
+            n[e] = r;
           }),
-          (e.parcelRequire6330 = n));
+          (e.parcelRequire6330 = t)),
+          t.register('0vd5g', function (e, r) {
+            var n, t, o, i, u;
+            (n = e.exports),
+              (t = 'getBundleURL'),
+              (o = function () {
+                return u;
+              }),
+              (i = function (e) {
+                return (u = e);
+              }),
+              Object.defineProperty(n, t, {
+                get: o,
+                set: i,
+                enumerable: !0,
+                configurable: !0,
+              });
+            var f = {};
+            function a(e) {
+              return (
+                ('' + e).replace(
+                  /^((?:https?|file|ftp|(chrome|moz)-extension):\/\/.+)\/[^/]+$/,
+                  '$1'
+                ) + '/'
+              );
+            }
+            u = function (e) {
+              var r = f[e];
+              return (
+                r ||
+                  ((r = (function () {
+                    try {
+                      throw new Error();
+                    } catch (r) {
+                      var e = ('' + r.stack).match(
+                        /(https?|file|ftp|(chrome|moz)-extension):\/\/[^)\n]+/g
+                      );
+                      if (e) return a(e[2]);
+                    }
+                    return '/';
+                  })()),
+                  (f[e] = r)),
+                r
+              );
+            };
+          });
         var o;
-        n.register('0vd5g', function (e, r) {
-          var t, n, o, i, u;
-          (t = e.exports),
-            (n = 'getBundleURL'),
-            (o = function () {
-              return u;
-            }),
-            (i = function (e) {
-              return (u = e);
-            }),
-            Object.defineProperty(t, n, {
-              get: o,
-              set: i,
-              enumerable: !0,
-              configurable: !0,
-            });
-          var f = {};
-          function a(e) {
-            return (
-              ('' + e).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') +
-              '/'
-            );
-          }
-          u = function (e) {
-            var r = f[e];
-            return (
-              r ||
-                ((r = (function () {
-                  try {
-                    throw new Error();
-                  } catch (r) {
-                    var e = ('' + r.stack).match(
-                      /(https?|file|ftp):\/\/[^)\n]+/g
-                    );
-                    if (e) return a(e[2]);
-                  }
-                  return '/';
-                })()),
-                (f[e] = r)),
-              r
-            );
-          };
-        }),
-          (o =
-            n('0vd5g').getBundleURL('diqt4') +
-            'up_/.cow-temp/service-worker.js'),
+        (o =
+          t('0vd5g').getBundleURL('diqt4') + 'up_/.cow-temp/service-worker.js'),
           navigator.serviceWorker.register(o);
       })();
+    </script>
+    <script>
       document.addEventListener('DOMContentLoaded', function () {
         var t = new IntersectionObserver(function (t, e) {
           t.forEach(function (t) {
@@ -594,6 +597,8 @@ npm start</pre
           t.observe(e);
         });
       });
+    </script>
+    <script>
       document.addEventListener('DOMContentLoaded', function () {
         var e = new IntersectionObserver(function (e, n) {
           e.forEach(function (e) {

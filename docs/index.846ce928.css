@@ -7,12 +7,12 @@ html {
   -webkit-text-size-adjust: 100%;
   font-size: 62.5%;
   line-height: 1.15;
-  -moz-tab-size: 4;
   tab-size: 4;
 }
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family: system-ui, AppleSystem, BlinkMacSystemFont, Segoe UI, Roboto,
+    Noto Sans, Ubuntu, Cantarell, Helvetica Neue, -apple-system, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
   margin: 0;
 }
 button,
@@ -110,7 +110,6 @@ nav a {
   background-color: transparent;
   border: 1px solid #000;
   cursor: pointer;
-  display: block;
   display: flex;
   font-size: 16px;
   height: 100%;
@@ -122,8 +121,9 @@ nav a {
   text-align: center;
   text-decoration: none;
   touch-action: manipulation;
-  user-select: none;
   -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 nav a:after {
   background-color: var(--cow-medium-brown);
@@ -132,7 +132,7 @@ nav a:after {
   left: 7px;
   position: absolute;
   top: 7px;
-  transition: 0.2s;
+  transition: all 0.2s;
   width: 100%;
   z-index: -1;
 }
@@ -228,8 +228,7 @@ pre:before {
 .HowToStart__detail {
   align-self: start;
   color: var(--cow-dark-brown);
-  grid-column: 1 / span 1;
-  grid-row: 3 / span 1;
+  grid-area: 3/1 / span 1 / span 1;
   line-height: 1.3;
 }
 .HowToStart__detail p {
@@ -239,36 +238,31 @@ pre:before {
 }
 @media (min-width: 800px) {
   .HowToStart__detail {
-    grid-column: 2 / span 2;
-    grid-row: 2 / span 1;
+    grid-area: 2/2 / span 1 / span 2;
   }
 }
 .HowToStart__title {
   align-self: end;
   color: var(--cow-dark-brown);
   font-size: 3rem;
-  grid-column: 1 / span 1;
-  grid-row: 2 / span 1;
+  grid-area: 2/1 / span 1 / span 1;
   padding: 48px 24px 12px;
 }
 @media (min-width: 800px) {
   .HowToStart__title {
-    grid-column: 2 / span 2;
-    grid-row: 1 / span 1;
+    grid-area: 1/2 / span 1 / span 2;
   }
 }
 .HowToStart__image {
   align-self: stretch;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
+  grid-area: 1/1 / span 1 / span 1;
   justify-self: stretch;
   padding: 0;
   width: auto !important;
 }
 @media (min-width: 800px) {
   .HowToStart__image {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 3;
+    grid-area: 1/1 / span 3 / span 1;
   }
 }
 .HowToStart__image__img {
@@ -298,21 +292,18 @@ pre:before {
 .Optimized__title {
   color: var(--cow-black);
   font-size: 3rem;
-  grid-column: 1 / span 1;
-  grid-row: 2 / span 1;
+  grid-area: 2/1 / span 1 / span 1;
   padding: 48px 24px 12px;
 }
 @media (min-width: 800px) {
   .Optimized__title {
-    grid-column: 1 / span 2;
-    grid-row: 1 / span 1;
+    grid-area: 1/1 / span 1 / span 2;
   }
 }
 .Optimized__detail {
   align-self: start;
   color: var(--cow-black);
-  grid-column: 1 / span 1;
-  grid-row: 3 / span 1;
+  grid-area: 3/1 / span 1 / span 1;
   line-height: 1.3;
 }
 .Optimized__detail p {
@@ -322,22 +313,19 @@ pre:before {
 }
 @media (min-width: 800px) {
   .Optimized__detail {
-    grid-column: 1 / span 2;
-    grid-row: 2 / span 1;
+    grid-area: 2/1 / span 1 / span 2;
   }
 }
 .Optimized__image {
   align-self: stretch;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
+  grid-area: 1/1 / span 1 / span 1;
   justify-self: stretch;
   padding: 0;
   width: auto !important;
 }
 @media (min-width: 800px) {
   .Optimized__image {
-    grid-column: 3 / span 2;
-    grid-row: 1 / span 3;
+    grid-area: 1/3 / span 3 / span 2;
   }
 }
 .Optimized__image__img {
@@ -463,4 +451,4 @@ footer a {
 footer p:first-child {
   font-weight: 700;
 }
-/*# sourceMappingURL=index.d34b2e84.css.map */
+/*# sourceMappingURL=index.846ce928.css.map */
