@@ -1,8 +1,5 @@
 /* eslint-disable */
-import {
-  manifest,
-  version,
-} from 'cow-scripts/node_modules/@parcel/service-worker';
+import { manifest, version } from '@parcel/service-worker';
 
 async function install() {
   const cache = await caches.open(version);

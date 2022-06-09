@@ -79,7 +79,7 @@ const getPackageName = installPackage => {
   if (installPackage.match(/^file:/)) {
     const installPackagePath = installPackage.match(/^file:(.*)?$/)[1];
     const { name } = require(path.join(installPackagePath, 'package.json'));
-    return { name };
+    return { name, path: installPackagePath };
   }
   return { name: installPackage };
 };
@@ -301,32 +301,24 @@ const createOnePageWebsite = (name, version, template) =>
       'error',
       ...allDependencies,
     ];
-    const child = spawn(command, args, { stdio: 'inherit' });
-    child.on('close', code => {
-      if (code !== 0) {
-        reject(
-          new Error({
-            command: `${command} ${args.join(' ')}`,
-          })
-        );
-        return;
-      }
-      const packageName = getPackageName(packageToInstall).name;
-      const templateName = getPackageName(templateToInstall).name;
-      executeNodeScript(
-        {
-          cwd: process.cwd(),
-          args: [],
-        },
-        [root, appName, originalDirectory, templateName],
-        `
-      var init = require('${packageName}/scripts/init.js');
-      init.apply(null, JSON.parse(process.argv[1]));
-    `
-      )
-        .then(() => resolve())
-        .catch(e => reject(e));
-    });
+    spawn.sync(command, args, { stdio: 'inherit' });
+
+    const packageName = getPackageName(packageToInstall).name;
+    const templateName = getPackageName(templateToInstall).name;
+
+    executeNodeScript(
+      {
+        cwd: process.cwd(),
+        args: [],
+      },
+      [root, appName, originalDirectory, templateName],
+      `
+    var init = require('${packageName}/scripts/init.js');
+    init.apply(null, JSON.parse(process.argv[1]));
+  `
+    )
+      .then(() => resolve())
+      .catch(e => reject(e));
   });
 
 /**

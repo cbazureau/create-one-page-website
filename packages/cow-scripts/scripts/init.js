@@ -104,9 +104,32 @@ module.exports = (appPath, appName, originalDirectory, templateName) => {
     appPackage[key] = templatePackage[key];
   });
 
+  // create package.json
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
     JSON.stringify(appPackage, null, 2) + os.EOL
+  );
+
+  // create .parcelrc
+  fs.writeFileSync(
+    path.join(appPath, '.parcelrc'),
+    JSON.stringify(
+      {
+        extends: '@parcel/config-default',
+        transformers: {
+          '*.{htm,html,xhtml}': ['...', 'parcel-transformer-html-datasrc'],
+        },
+      },
+      null,
+      2
+    ) + os.EOL
+  );
+
+  // create .gitignore
+  fs.writeFileSync(
+    path.join(appPath, '.gitignore'),
+    ['dist/', '.parcel-cache/', '.cow-temp/', 'node_modules/'].join(os.EOL) +
+      os.EOL
   );
 
   // Remove template

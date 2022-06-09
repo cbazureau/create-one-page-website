@@ -58,7 +58,10 @@ const convertImg = async (img, res = {}, format) => {
       console.log(`  ${chalk.green(`[cow-image] ${filename} generated`)}`);
       return true;
     }
-    return sharp(img).resize(width).webp({ quality }).toFile(target);
+    await sharp(img).resize(width).webp({ quality }).toFile(target);
+    // eslint-disable-next-line no-console
+    console.log(`  ${chalk.green(`[cow-image] ${filename} generated`)}`);
+    return true;
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(`  ${chalk.red(`[cow-image] ${filename} can't be generated`)}`);
