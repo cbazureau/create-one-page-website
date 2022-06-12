@@ -18,11 +18,11 @@ const BLANK_IMG =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg==';
 
 /**
- * getJpgExt
+ * getExt
  * @param {*} src
  * @returns
  */
-const getJpgExt = src => (src.endsWith('.jpeg') ? '.jpeg' : '.jpg');
+const getExt = src => (src || '').split('.').pop();
 
 /**
  * convertImg
@@ -35,7 +35,7 @@ const convertImg = async (img, res = {}, format) => {
   const { width, quality } = res;
   const target = img
     .replace(IMG, TMP)
-    .replace(getJpgExt(img), `.${width}.${format}`);
+    .replace(`.${getExt(img)}`, `.${width}.${format}`);
   const filename = target.split(TMP)[1];
   try {
     if (fs.existsSync(target)) {
@@ -80,7 +80,7 @@ const buildSrcSet = (src, format) =>
     ({ width }) =>
       `${src
         .replace(IMG, TMP)
-        .replace(getJpgExt(src), `.${width}.${format}`)} ${width}w`
+        .replace(`.${getExt(src)}`, `.${width}.${format}`)} ${width}w`
   ).join(', ');
 
 module.exports = {
@@ -93,7 +93,7 @@ module.exports = {
       .map(c => `${c}__img`)
       .join(' ');
 
-    if (!src.endsWith('.jpg') && !src.endsWith('.jpeg')) {
+    if (!['jpeg', 'jpg', 'png'].includes(getExt(src))) {
       return {
         tag: 'picture',
         attrs: {
@@ -126,18 +126,23 @@ module.exports = {
       };
     }
 
+    const ext = getExt(src);
+    const outputExt = ext === 'png' ? 'png' : 'jpg';
+
     (async () => {
       fs.ensureDir(path.join(workingDir, TMP));
       await RESOLUTIONS.reduce(
-        (acc, res) => [...acc, { format: 'jpg', res }, { format: 'webp', res }],
+        (acc, res) => [
+          ...acc,
+          { format: outputExt, res },
+          { format: 'webp', res },
+        ],
         []
       ).forEach(async ({ format, res }) => {
         await convertImg(path.join(workingDir, './src', src), res, format);
       });
       await convertImg(path.join(workingDir, './src', src), THUMB, 'png');
     })();
-
-    const ext = getJpgExt(src);
 
     return {
       tag: 'picture',
@@ -156,8 +161,8 @@ module.exports = {
         {
           tag: 'source',
           attrs: {
-            'data-srcset': buildSrcSet(src, 'jpg'),
-            type: 'image/jpeg',
+            'data-srcset': buildSrcSet(src, outputExt),
+            type: outputExt === 'png' ? 'image/png' : 'image/jpeg',
             sizes: sizes || '100vw',
           },
         },
@@ -165,10 +170,12 @@ module.exports = {
           tag: 'img',
           attrs: {
             class: imgClassName,
-            src: src.replace(IMG, TMP).replace(ext, `.${THUMB.width}.png`),
+            src: src
+              .replace(IMG, TMP)
+              .replace(`.${ext}`, `.${THUMB.width}.png`),
             'data-src': src
               .replace(IMG, TMP)
-              .replace(ext, `.${RESOLUTIONS[0].width}.jpg`),
+              .replace(`.${ext}`, `.${RESOLUTIONS[0].width}.${outputExt}`),
             alt,
           },
         },
@@ -181,7 +188,7 @@ module.exports = {
                 class: imgClassName,
                 src: src
                   .replace(IMG, TMP)
-                  .replace(ext, `.${RESOLUTIONS[0].width}.jpg`),
+                  .replace(`.${ext}`, `.${RESOLUTIONS[0].width}.${outputExt}`),
                 alt,
               },
             },
