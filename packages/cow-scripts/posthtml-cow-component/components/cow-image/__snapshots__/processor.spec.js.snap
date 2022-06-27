@@ -57,10 +57,26 @@ Object {
   "content": Array [
     Object {
       "attrs": Object {
+        "data-srcset": "../mocks/fake.375.webp 375w, ../mocks/fake.640.webp 640w, ../mocks/fake.750.webp 750w, ../mocks/fake.1024.webp 1024w, ../mocks/fake.1280.webp 1280w, ../mocks/fake.2048.webp 2048w, ../mocks/fake.2560.webp 2560w",
+        "sizes": "100vw",
+        "type": "image/webp",
+      },
+      "tag": "source",
+    },
+    Object {
+      "attrs": Object {
+        "data-srcset": "../mocks/fake.375.png 375w, ../mocks/fake.640.png 640w, ../mocks/fake.750.png 750w, ../mocks/fake.1024.png 1024w, ../mocks/fake.1280.png 1280w, ../mocks/fake.2048.png 2048w, ../mocks/fake.2560.png 2560w",
+        "sizes": "100vw",
+        "type": "image/png",
+      },
+      "tag": "source",
+    },
+    Object {
+      "attrs": Object {
         "alt": "my alt",
         "class": "CowImage__img MyClassName__img",
-        "data-src": "../mocks/fake.png",
-        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg==",
+        "data-src": "../mocks/fake.375.png",
+        "src": "../mocks/fake.24.png",
       },
       "tag": "img",
     },
@@ -70,7 +86,7 @@ Object {
           "attrs": Object {
             "alt": "my alt",
             "class": "CowImage__img MyClassName__img",
-            "src": "../mocks/fake.png",
+            "src": "../mocks/fake.375.png",
           },
           "tag": "img",
         },

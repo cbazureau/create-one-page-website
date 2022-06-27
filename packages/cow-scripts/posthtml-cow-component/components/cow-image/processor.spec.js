@@ -77,4 +77,26 @@ test('cow-image with png', () => {
   };
   const output = processor(customNode, { workingDir });
   expect(output).toMatchSnapshot();
+  expect(
+    mockSharp.mock.calls.map(call =>
+      call.map((arg, index) =>
+        index === 0 || index === 3 ? arg.replace(__dirname, '') : arg
+      )
+    )
+  ).toEqual([
+    ['/mocks/fake.png', 375, { compressionLevel: 8 }, '/mocks/fake.375.png'],
+    ['/mocks/fake.png', 375, { quality: 80 }, '/mocks/fake.375.webp'],
+    ['/mocks/fake.png', 640, { compressionLevel: 8 }, '/mocks/fake.640.png'],
+    ['/mocks/fake.png', 640, { quality: 80 }, '/mocks/fake.640.webp'],
+    ['/mocks/fake.png', 750, { compressionLevel: 8 }, '/mocks/fake.750.png'],
+    ['/mocks/fake.png', 750, { quality: 80 }, '/mocks/fake.750.webp'],
+    ['/mocks/fake.png', 1024, { compressionLevel: 8 }, '/mocks/fake.1024.png'],
+    ['/mocks/fake.png', 1024, { quality: 80 }, '/mocks/fake.1024.webp'],
+    ['/mocks/fake.png', 1280, { compressionLevel: 8 }, '/mocks/fake.1280.png'],
+    ['/mocks/fake.png', 1280, { quality: 80 }, '/mocks/fake.1280.webp'],
+    ['/mocks/fake.png', 2048, { compressionLevel: 8 }, '/mocks/fake.2048.png'],
+    ['/mocks/fake.png', 2048, { quality: 80 }, '/mocks/fake.2048.webp'],
+    ['/mocks/fake.png', 2560, { compressionLevel: 8 }, '/mocks/fake.2560.png'],
+    ['/mocks/fake.png', 2560, { quality: 80 }, '/mocks/fake.2560.webp'],
+  ]);
 });
