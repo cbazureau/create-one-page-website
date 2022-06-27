@@ -1,13 +1,13 @@
 module.exports = {
   name: 'cow-visible',
   processor: ({ attrs = {}, content = [] }) => {
-    const { classname } = attrs;
-    const divClassName = ['CowVisible', classname].filter(c => !!c).join(' ');
+    const { classname, tag = 'div' } = attrs;
 
     return {
-      tag: 'div',
+      tag,
       attrs: {
-        class: divClassName,
+        class: classname,
+        'data-ref': 'cow-visible',
       },
       content,
     };

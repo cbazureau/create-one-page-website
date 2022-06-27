@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-  const arr = document.querySelectorAll('.CowVisible');
+  const arr = document.querySelectorAll('[data-ref="cow-visible"]');
   arr.forEach(v => {
     imageObserver.observe(v);
   });

@@ -144,7 +144,7 @@ npm start</pre
             >
             <p>How it's transpiled :</p>
             <pre>
-&lt;div class="MyClass <span style="color:gold">is-visible</span>"&gt;
+&lt;div data-ref="cow-visible" class="MyClass <span style="color:gold">is-visible</span>"&gt;
   &lt;some-html /&gt;
 &lt;/div&gt;</pre>
             <p>Attributes available :</p>
@@ -163,6 +163,12 @@ npm start</pre
                   <td>ex: MyClass</td>
                   <td>none</td>
                   <td>class that will be set on the transpiled element</td>
+                </tr>
+                <tr>
+                  <td>tag</td>
+                  <td>ex: section</td>
+                  <td>div</td>
+                  <td>if you want a specific tag instead of a div</td>
                 </tr>
               </tbody>
             </table>

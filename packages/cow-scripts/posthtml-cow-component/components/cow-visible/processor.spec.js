@@ -17,7 +17,8 @@ test('cow-visibile with classname', () => {
   expect(name).toEqual('cow-visible');
   expect(processor(node, {})).toEqual({
     attrs: {
-      class: 'CowVisible MyClassName',
+      class: 'MyClassName',
+      'data-ref': 'cow-visible',
     },
     content: [...node.content],
     tag: 'div',
@@ -31,9 +32,25 @@ test('cow-visibile without classname', () => {
   };
   expect(processor(customNode, {})).toEqual({
     attrs: {
-      class: 'CowVisible',
+      'data-ref': 'cow-visible',
     },
     content: [...customNode.content],
     tag: 'div',
+  });
+});
+
+test('cow-visibile with tag', () => {
+  const customNode = {
+    ...node,
+    attrs: {
+      tag: 'section',
+    },
+  };
+  expect(processor(customNode, {})).toEqual({
+    attrs: {
+      'data-ref': 'cow-visible',
+    },
+    content: [...customNode.content],
+    tag: 'section',
   });
 });
