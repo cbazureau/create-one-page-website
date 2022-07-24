@@ -48,6 +48,53 @@ Object {
 }
 `;
 
+exports[`cow-image with high priority 1`] = `
+Object {
+  "attrs": Object {
+    "class": "MyClassName",
+  },
+  "content": Array [
+    Object {
+      "attrs": Object {
+        "scrset": "../mocks/fake.375.webp 375w, ../mocks/fake.640.webp 640w, ../mocks/fake.750.webp 750w, ../mocks/fake.1024.webp 1024w, ../mocks/fake.1280.webp 1280w, ../mocks/fake.2048.webp 2048w, ../mocks/fake.2560.webp 2560w",
+        "sizes": "100vw",
+        "type": "image/webp",
+      },
+      "tag": "source",
+    },
+    Object {
+      "attrs": Object {
+        "scrset": "../mocks/fake.375.jpg 375w, ../mocks/fake.640.jpg 640w, ../mocks/fake.750.jpg 750w, ../mocks/fake.1024.jpg 1024w, ../mocks/fake.1280.jpg 1280w, ../mocks/fake.2048.jpg 2048w, ../mocks/fake.2560.jpg 2560w",
+        "sizes": "100vw",
+        "type": "image/jpeg",
+      },
+      "tag": "source",
+    },
+    Object {
+      "attrs": Object {
+        "alt": "my alt",
+        "src": "../mocks/fake.375.jpg",
+      },
+      "fetchpriority": "high",
+      "tag": "img",
+    },
+    Object {
+      "content": Array [
+        Object {
+          "attrs": Object {
+            "alt": "my alt",
+            "src": "../mocks/fake.375.jpg",
+          },
+          "tag": "img",
+        },
+      ],
+      "tag": "noscript",
+    },
+  ],
+  "tag": "picture",
+}
+`;
+
 exports[`cow-image with png 1`] = `
 Object {
   "attrs": Object {

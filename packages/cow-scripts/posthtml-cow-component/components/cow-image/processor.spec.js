@@ -70,6 +70,15 @@ test('cow-image without classname', () => {
   expect(output.attrs['data-ref']).toEqual('cow-image');
 });
 
+test('cow-image with high priority', () => {
+  const customNode = {
+    ...node,
+    attrs: { ...node.attrs, fetchpriority: 'high' },
+  };
+  const output = processor(customNode, { workingDir });
+  expect(output).toMatchSnapshot();
+});
+
 test('cow-image with png', () => {
   const customNode = {
     ...node,

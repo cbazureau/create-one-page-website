@@ -4,6 +4,21 @@ const path = require('path');
 const fs = require('fs-extra');
 const { imgFolder: IMG, tmpFolder: TMP } = require('../../../utils/constants');
 
+/**
+ * cleanloop
+ * @param {*} obj
+ * @returns
+ */
+const cleanloop = obj => {
+  const t = obj;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const v in t) {
+    if (typeof t[v] === 'object') cleanloop(t[v]);
+    else if (t[v] === undefined) delete t[v];
+  }
+  return t;
+};
+
 const RESOLUTIONS = [
   { width: 375, quality: 80 },
   { width: 640, quality: 80 },
@@ -86,22 +101,23 @@ const buildSrcSet = (src, format) =>
 module.exports = {
   name: 'cow-image',
   processor: ({ attrs = {} }, { workingDir }) => {
-    const { src, alt, sizes, classname } = attrs;
+    const { src, alt, sizes, classname, fetchpriority } = attrs;
     const pictureClassName = classname;
+    const isHighPriority = fetchpriority === 'high';
 
     if (!['jpeg', 'jpg', 'png'].includes(getExt(src))) {
-      return {
+      return cleanloop({
         tag: 'picture',
         attrs: {
           class: pictureClassName,
-          'data-ref': 'cow-image',
+          'data-ref': isHighPriority ? undefined : 'cow-image',
         },
         content: [
           {
             tag: 'img',
             attrs: {
-              src: BLANK_IMG,
-              'data-src': src,
+              src: isHighPriority ? src : BLANK_IMG,
+              'data-src': isHighPriority ? undefined : src,
               alt,
             },
           },
@@ -118,7 +134,7 @@ module.exports = {
             ],
           },
         ],
-      };
+      });
     }
 
     const ext = getExt(src);
@@ -139,17 +155,20 @@ module.exports = {
       await convertImg(path.join(workingDir, './src', src), THUMB, 'png');
     })();
 
-    return {
+    return cleanloop({
       tag: 'picture',
       attrs: {
         class: pictureClassName,
-        'data-ref': 'cow-image',
+        'data-ref': isHighPriority ? undefined : 'cow-image',
       },
       content: [
         {
           tag: 'source',
           attrs: {
-            'data-srcset': buildSrcSet(src, 'webp'),
+            'data-srcset': isHighPriority
+              ? undefined
+              : buildSrcSet(src, 'webp'),
+            scrset: isHighPriority ? buildSrcSet(src, 'webp') : undefined,
             type: 'image/webp',
             sizes: sizes || '100vw',
           },
@@ -157,20 +176,28 @@ module.exports = {
         {
           tag: 'source',
           attrs: {
-            'data-srcset': buildSrcSet(src, outputExt),
+            'data-srcset': isHighPriority
+              ? undefined
+              : buildSrcSet(src, outputExt),
+            scrset: isHighPriority ? buildSrcSet(src, outputExt) : undefined,
             type: outputExt === 'png' ? 'image/png' : 'image/jpeg',
             sizes: sizes || '100vw',
           },
         },
         {
           tag: 'img',
+          fetchpriority: isHighPriority ? 'high' : undefined,
           attrs: {
-            src: src
-              .replace(IMG, TMP)
-              .replace(`.${ext}`, `.${THUMB.width}.png`),
-            'data-src': src
-              .replace(IMG, TMP)
-              .replace(`.${ext}`, `.${RESOLUTIONS[0].width}.${outputExt}`),
+            src: isHighPriority
+              ? src
+                  .replace(IMG, TMP)
+                  .replace(`.${ext}`, `.${RESOLUTIONS[0].width}.${outputExt}`)
+              : src.replace(IMG, TMP).replace(`.${ext}`, `.${THUMB.width}.png`),
+            'data-src': isHighPriority
+              ? undefined
+              : src
+                  .replace(IMG, TMP)
+                  .replace(`.${ext}`, `.${RESOLUTIONS[0].width}.${outputExt}`),
             alt,
           },
         },
@@ -189,6 +216,6 @@ module.exports = {
           ],
         },
       ],
-    };
+    });
   },
 };
