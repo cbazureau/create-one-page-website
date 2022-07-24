@@ -239,9 +239,9 @@ pre::before {
   grid-row: 1 / span 1;
   align-self: stretch;
   justify-self: stretch;
-  width: auto !important;
   padding: 0px;
 }
+
 @media (min-width: 800px) {
   .HowToStart__image {
     grid-column: 1 / span 1;
@@ -249,16 +249,15 @@ pre::before {
   }
 }
 
-.HowToStart__image__img {
+.HowToStart__image img {
   height: auto;
-  width: 100%;
   object-fit: cover;
+  width: 100%;
 }
 
 @media (min-width: 800px) {
-  .HowToStart__image__img {
+  .HowToStart__image img {
     height: 100%;
-    width: 100% !important;
   }
 }
 
@@ -320,7 +319,6 @@ pre::before {
   grid-row: 1 / span 1;
   align-self: stretch;
   justify-self: stretch;
-  width: auto !important;
   padding: 0px;
 }
 @media (min-width: 800px) {
@@ -330,16 +328,15 @@ pre::before {
   }
 }
 
-.Optimized__image__img {
+.Optimized__image img {
   height: auto;
   width: 100%;
   object-fit: cover;
 }
 
 @media (min-width: 800px) {
-  .Optimized__image__img {
+  .Optimized__image img {
     height: 100%;
-    width: 100% !important;
   }
 }
 
@@ -376,20 +373,18 @@ pre::before {
 }
 
 .Documentation__image {
-  width: auto !important;
   margin: 24px auto;
 }
 
-.Documentation__image__img {
+.Documentation__image img {
   height: 300px;
   width: 100%;
   object-fit: cover;
 }
 
 @media (min-width: 800px) {
-  .Documentation__image__img {
+  .Documentation__image img {
     height: 250px;
-    width: 100% !important;
   }
 }
 

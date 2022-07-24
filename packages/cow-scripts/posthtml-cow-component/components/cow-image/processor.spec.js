@@ -35,7 +35,7 @@ beforeEach(() => {
 test('cow-image with classname', () => {
   const output = processor(node, { workingDir });
   expect(name).toEqual('cow-image');
-  expect(output.attrs.class).toEqual('CowImage MyClassName');
+  expect(output.attrs.class).toEqual('MyClassName');
   expect(output).toMatchSnapshot();
   expect(
     mockSharp.mock.calls.map(call =>
@@ -67,7 +67,7 @@ test('cow-image without classname', () => {
     attrs: { ...node.attrs, classname: undefined },
   };
   const output = processor(customNode, { workingDir });
-  expect(output.attrs.class).toEqual('CowImage');
+  expect(output.attrs['data-ref']).toEqual('cow-image');
 });
 
 test('cow-image with png', () => {

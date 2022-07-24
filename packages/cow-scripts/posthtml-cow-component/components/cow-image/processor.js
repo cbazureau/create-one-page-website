@@ -87,23 +87,19 @@ module.exports = {
   name: 'cow-image',
   processor: ({ attrs = {} }, { workingDir }) => {
     const { src, alt, sizes, classname } = attrs;
-    const pictureClassName = ['CowImage', classname].filter(c => !!c).join(' ');
-    const imgClassName = ['CowImage', classname]
-      .filter(c => !!c)
-      .map(c => `${c}__img`)
-      .join(' ');
+    const pictureClassName = classname;
 
     if (!['jpeg', 'jpg', 'png'].includes(getExt(src))) {
       return {
         tag: 'picture',
         attrs: {
           class: pictureClassName,
+          'data-ref': 'cow-image',
         },
         content: [
           {
             tag: 'img',
             attrs: {
-              class: imgClassName,
               src: BLANK_IMG,
               'data-src': src,
               alt,
@@ -115,7 +111,6 @@ module.exports = {
               {
                 tag: 'img',
                 attrs: {
-                  class: imgClassName,
                   src,
                   alt,
                 },
@@ -148,6 +143,7 @@ module.exports = {
       tag: 'picture',
       attrs: {
         class: pictureClassName,
+        'data-ref': 'cow-image',
       },
       content: [
         {
@@ -169,7 +165,6 @@ module.exports = {
         {
           tag: 'img',
           attrs: {
-            class: imgClassName,
             src: src
               .replace(IMG, TMP)
               .replace(`.${ext}`, `.${THUMB.width}.png`),
@@ -185,7 +180,6 @@ module.exports = {
             {
               tag: 'img',
               attrs: {
-                class: imgClassName,
                 src: src
                   .replace(IMG, TMP)
                   .replace(`.${ext}`, `.${RESOLUTIONS[0].width}.${outputExt}`),

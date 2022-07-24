@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-  const arr = document.querySelectorAll('.CowImage');
+  const arr = document.querySelectorAll('[data-ref="cow-image"]');
   arr.forEach(v => {
     imageObserver.observe(v);
   });

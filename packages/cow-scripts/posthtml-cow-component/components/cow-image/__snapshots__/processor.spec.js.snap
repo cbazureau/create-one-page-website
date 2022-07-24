@@ -3,7 +3,8 @@
 exports[`cow-image with classname 1`] = `
 Object {
   "attrs": Object {
-    "class": "CowImage MyClassName",
+    "class": "MyClassName",
+    "data-ref": "cow-image",
   },
   "content": Array [
     Object {
@@ -25,7 +26,6 @@ Object {
     Object {
       "attrs": Object {
         "alt": "my alt",
-        "class": "CowImage__img MyClassName__img",
         "data-src": "../mocks/fake.375.jpg",
         "src": "../mocks/fake.24.png",
       },
@@ -36,7 +36,6 @@ Object {
         Object {
           "attrs": Object {
             "alt": "my alt",
-            "class": "CowImage__img MyClassName__img",
             "src": "../mocks/fake.375.jpg",
           },
           "tag": "img",
@@ -52,7 +51,8 @@ Object {
 exports[`cow-image with png 1`] = `
 Object {
   "attrs": Object {
-    "class": "CowImage MyClassName",
+    "class": "MyClassName",
+    "data-ref": "cow-image",
   },
   "content": Array [
     Object {
@@ -74,7 +74,6 @@ Object {
     Object {
       "attrs": Object {
         "alt": "my alt",
-        "class": "CowImage__img MyClassName__img",
         "data-src": "../mocks/fake.375.png",
         "src": "../mocks/fake.24.png",
       },
@@ -85,7 +84,6 @@ Object {
         Object {
           "attrs": Object {
             "alt": "my alt",
-            "class": "CowImage__img MyClassName__img",
             "src": "../mocks/fake.375.png",
           },
           "tag": "img",
