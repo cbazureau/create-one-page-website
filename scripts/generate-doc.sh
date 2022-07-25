@@ -7,4 +7,3 @@ cd demo
 npm run build
 cp -a ./dist ../../../docs
 cd ../../../
-touch docs/.nojekyll

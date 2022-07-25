@@ -1,5 +1,6 @@
 module.exports = {
   publicUrl: '/create-one-page-website/',
+  extraFilesToCopy: ['.nojekyll'],
   plugins: {
     'cow-scripts/posthtml-cow-component': {
       workingDir: __dirname,

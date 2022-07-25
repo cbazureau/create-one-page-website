@@ -1,5 +1,10 @@
+const fs = require('fs-extra');
 const { getBundler, resolveApp } = require('../utils/bundler');
-const { postHtmlConfigFile } = require('../utils/constants');
+const {
+  postHtmlConfigFile,
+  srcFolder,
+  buildFolder,
+} = require('../utils/constants');
 // eslint-disable-next-line import/no-dynamic-require
 const postHtmlConfig = require(resolveApp(postHtmlConfigFile));
 
@@ -18,6 +23,13 @@ const options = {
   const bundler = getBundler(options);
   try {
     const { bundleGraph, buildTime } = await bundler.run();
+    (postHtmlConfig?.extraFilesToCopy || []).forEach(file => {
+      const origin = `${srcFolder}${file}`;
+      if (fs.existsSync(origin)) {
+        fs.copySync(resolveApp(origin), resolveApp(`${buildFolder}${file}`));
+        console.log(`Copy ${file} to build folder`);
+      }
+    });
     const bundles = bundleGraph.getBundles();
     console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
   } catch (e) {
