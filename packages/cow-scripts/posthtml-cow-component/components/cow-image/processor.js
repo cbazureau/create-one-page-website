@@ -168,7 +168,7 @@ module.exports = {
             'data-srcset': isHighPriority
               ? undefined
               : buildSrcSet(src, 'webp'),
-            scrset: isHighPriority ? buildSrcSet(src, 'webp') : undefined,
+            srcset: isHighPriority ? buildSrcSet(src, 'webp') : undefined,
             type: 'image/webp',
             sizes: sizes || '100vw',
           },
@@ -179,7 +179,7 @@ module.exports = {
             'data-srcset': isHighPriority
               ? undefined
               : buildSrcSet(src, outputExt),
-            scrset: isHighPriority ? buildSrcSet(src, outputExt) : undefined,
+            srcset: isHighPriority ? buildSrcSet(src, outputExt) : undefined,
             type: outputExt === 'png' ? 'image/png' : 'image/jpeg',
             sizes: sizes || '100vw',
           },
