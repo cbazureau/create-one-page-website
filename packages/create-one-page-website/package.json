@@ -1,6 +1,6 @@
 {
   "name": "create-one-page-website",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Create optimized One-page Websites easily",
   "scripts": {
     "demo": "./scripts/demo.sh"
